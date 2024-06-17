@@ -1,0 +1,27 @@
+@import "../variables.module.scss";
+
+.bgDarkBlue {
+  background-color: $dark-blue;
+}
+
+.navBtn {
+  background-color: $dark-blue;
+  margin: 5px 0;
+  font-size: 0.75rem;
+  border: none;
+  
+  &:hover {
+    background-color: $medium-blue;
+  }
+}
+
+.navbarToggle {
+  background-color: #FFF;
+  color: $medium-blue;
+}
+
+@media screen and (min-width: 375px) {
+  .navBtn {
+    font-size: 0.88rem;
+  }
+}

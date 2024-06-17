@@ -1,14 +1,10 @@
 import styles from "../app/page.module.scss"
 
-export const metadata = {
-  title: 'Início | JH Imobiliária'
-}
-
-const Home = () => {
+export default function Home() {
   return (
     <>
+      <h1></h1>
     </>
   )
 }
 
-export default Home
