@@ -6,7 +6,7 @@ import styles from "./header.module.scss"
 export default function Header() {
 
   return (
-    <header>
+    <header className="fixed-top">
       <div className="bg-light">
         <Container className="d-flex align-items-center justify-content-between">
           <Link href="/admin">
