@@ -1,9 +1,12 @@
 import styles from "../app/page.module.scss"
+import SectionSearch from "./components/SectionSearch";
 
 export default function Home() {
   return (
     <>
-      <h1></h1>
+      <main>
+        <SectionSearch />
+      </main> 
     </>
   )
 }
