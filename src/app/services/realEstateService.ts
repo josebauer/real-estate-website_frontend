@@ -1,0 +1,35 @@
+import api from "./api";
+
+export type RealEstateType = {
+  id: number
+  title: string
+  price: number
+  negotiation: string
+  description: string
+  zipCode: number
+  address: string
+  district: string
+  city: string
+  state: string
+  buildingArea: number
+  totalArea: number
+  bedrooms: number
+  suites: number
+  garages: number
+  imagesUrl: string
+  featured: boolean
+}
+
+const realEstateService = {
+  getNewestCourses: async() => {
+    const res = await api.get('/realEstate/newest').catch((error) => {
+      console.log(error.response.data.message)
+
+      return error.response
+    })
+
+    return res
+  }
+}
+
+export default realEstateService
