@@ -1,11 +1,11 @@
 import styles from "../app/page.module.scss"
-import SectionSearch from "./components/SectionSearch";
+import SearchSection from "./components/SearchSection";
 
 export default function Home() {
   return (
     <>
       <main>
-        <SectionSearch />
+        <SearchSection />
       </main> 
     </>
   )

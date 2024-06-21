@@ -1,10 +1,10 @@
 import { Button, Container, FormSelect, Image } from "react-bootstrap";
-import styles from "./sectionSearch.module.scss";
+import styles from "./searchSection.module.scss";
 
-export default function SectionSearch() {
+export default function SearchSection() {
   return (
     <>
-      <section className={styles.sectionSearch}>
+      <section className={styles.searchSection}>
         <Container className={`${styles.search} mx-2`}>
           <Container className={styles.formSelect}>
             <FormSelect className={styles.select} aria-label="Default select example" >

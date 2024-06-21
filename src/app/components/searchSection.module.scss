@@ -1,6 +1,6 @@
 @import "../variables.module.scss";
 
-.sectionSearch {
+.searchSection {
   display: flex;
   justify-content: center;
   min-height: 100vh;
@@ -57,7 +57,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .sectionSearch {
+  .searchSection {
     background-image: url('/background-large.jpg');
     
   }
