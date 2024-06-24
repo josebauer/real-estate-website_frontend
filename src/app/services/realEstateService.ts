@@ -21,14 +21,14 @@ export type RealEstateType = {
 }
 
 const realEstateService = {
-  getNewestCourses: async() => {
-    const res = await api.get('/realEstate/newest').catch((error) => {
+  getNewestRealEstate: async () => {
+    const res = await api.get('/real-estate/newest').catch((error) => {
       console.log(error.response.data.message)
 
       return error.response
     })
 
-    return res
+    return res.data
   }
 }
 

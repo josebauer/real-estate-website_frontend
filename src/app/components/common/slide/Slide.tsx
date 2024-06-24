@@ -1,5 +1,7 @@
+'use client'
+
 import { Splide, SplideSlide } from '@splidejs/react-splide';
-import '@splidejs/react-splide/dist/css/splide.min.css';
+import '@splidejs/react-splide/css';
 import styles from "./slide.module.scss";
 import { RealEstateType } from '@/app/services/realEstateService';
 import SlideCard from '../slideCard/SlideCard';
@@ -8,7 +10,7 @@ interface props {
   realEstate: RealEstateType[]
 }
 
-export default function({ realEstate }: props) {
+export default function Slide({ realEstate }: props) {
   return (
     <>
       <div>
