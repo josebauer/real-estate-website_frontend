@@ -1,9 +1,62 @@
+@import "../../../variables.module.scss";
+
 .slide {
+  background-color: #FFF;
+  border-radius: 20px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
   p {
     color: #000;
+    margin: 0;
+  }
+
+  .location {
+    padding-left: 1.5rem;
+    color: $medium-gray;
+  }
+
+  .price,
+  .negotiation {
+    color: $medium-blue;
+    font-weight: bold;
   }
 }
 
+.slideImg {
+  width: 100%;
+  height: 250px;
+
+  border-radius: 20px 20px 0 0;
+}
+
 .slideTitle {
-  font-size: 1.75rem;
+  color: #000;
+  font-weight: bold;
+  font-size: 1.50rem;
+  padding: 1.5rem 1.5rem 0;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.negotiation {
+  border: 2px solid $medium-blue;
+  border-radius: 10px;
+  padding: 0.25rem 1rem;
+}
+
+@media screen and (max-width: 370px) {
+  .slide {
+    p {
+      font-size: 0.88rem;
+    }
+
+    .slideTitle {
+      font-size: 1.25rem;
+    }
+  }
 }

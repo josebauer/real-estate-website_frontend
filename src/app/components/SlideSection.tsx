@@ -10,8 +10,8 @@ interface props {
 export default function SlideSection({ newestRealEstate }: props) {
   return (
     <>
-      <Container>
-        <p className={styles.sectionTitle}>Novidades!</p>
+      <Container className="d-flex flex-column align-items-center">
+        <p className={styles.sectionTitle}>Novidades</p>
         <Slide realEstate={newestRealEstate} />
       </Container>
     </>

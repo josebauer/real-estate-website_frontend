@@ -1,24 +1,16 @@
 import styles from "../app/page.module.scss"
 import SearchSection from "./components/SearchSection";
 import SlideSection from "./components/SlideSection";
-import realEstateService, { RealEstateType } from "./services/realEstateService";
-import { ReactNode } from "react";
+import realEstateService from "./services/realEstateService";
 
-interface HomePageProps {
-  children?: ReactNode
-  realEstate: RealEstateType[]
-}
 
 export default async function Home() {
-  const response = await realEstateService.getNewestRealEstate()
-
-  // console.log({response})
-
+  const newestRealEstate = await realEstateService.getNewestRealEstate()
   return (
     <>
       <main>
         <SearchSection />
-        <SlideSection newestRealEstate={ response } />
+        <SlideSection newestRealEstate={ newestRealEstate } />
       </main>
     </>
   )
