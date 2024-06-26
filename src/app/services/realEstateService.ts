@@ -29,6 +29,16 @@ const realEstateService = {
     })
 
     return res.data
+  },
+
+  getFeaturedRealEstate: async () => {
+    const res = await api.get('/real-estate/featured').catch((error) => {
+      console.log(error.response.data.message)
+
+      return error.response
+    })
+
+    return res.data
   }
 }
 
