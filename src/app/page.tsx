@@ -1,9 +1,6 @@
-import styles from "../app/page.module.scss"
 import SearchSection from "./components/searchSection/SearchSection";
-import SlideFeaturedSection from "./components/slideSection/SlideFeaturedSection";
-import SlideNewestSection from "./components/slideSection/SlideNewestSection";
 import realEstateService from "./services/realEstateService";
-
+import SlideSection from "./components/slideSection/SlideSection";
 
 export default async function Home() {
   const newestRealEstate = await realEstateService.getNewestRealEstate()
@@ -13,8 +10,8 @@ export default async function Home() {
     <>
       <main>
         <SearchSection />
-        <SlideNewestSection newestRealEstate={newestRealEstate} />
-        <SlideFeaturedSection featuredRealEstate={featuredRealEstate} />
+        <SlideSection realEstate={newestRealEstate} title="Novidades" />
+        <SlideSection realEstate={featuredRealEstate} title="Imóveis em destaque" />
       </main>
     </>
   )

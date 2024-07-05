@@ -16,7 +16,7 @@ export type RealEstateType = {
   bedrooms: number
   suites: number
   garages: number
-  imagesUrl: string
+  imagesUrl: Array<String>
   featured: boolean
 }
 

@@ -4,15 +4,16 @@ import styles from "./slideSection.module.scss";
 import Slide from "../common/slide/Slide";
 
 interface props {
-  featuredRealEstate: RealEstateType[]
+  realEstate: RealEstateType[],
+  title: string
 }
 
-export default function SlideFeaturedSection({ featuredRealEstate }: props) {
+export default function SlideSection({ realEstate, title }: props) {
   return (
     <>
       <Container className="d-flex flex-column align-items-center">
-        <p className={styles.sectionTitle}>Imóveis em destaque</p>
-        <Slide realEstate={featuredRealEstate} />
+        <p className={styles.sectionTitle}>{title}</p>
+        <Slide realEstate={realEstate} />
       </Container>
     </>
   )

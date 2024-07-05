@@ -10,14 +10,14 @@ export default function SlideCard({ realEstate }: props) {
   return (
     <>
       <div className={`${styles.slide} shadow-sm`}>
-        <img src={`${process.env.NEXT_PUBLIC_BASEURL}/${realEstate.imagesUrl}`} alt={realEstate.title} className={styles.slideImg} />
+        <img src={`${process.env.NEXT_PUBLIC_BASEURL}/${realEstate.imagesUrl?.[0]}`} alt={realEstate.title} className={styles.slideImg} />
         <p className={styles.slideTitle}>{realEstate.title}</p>
         <p className={styles.location}>
           {realEstate.district} - {realEstate.city}/{realEstate.state.toUpperCase()}
         </p>
         <div className="d-flex px-4 py-3 align-items-center justify-content-between">
           <p className={styles.price}>
-            {realEstate.price === null ? 'R$ A CONSULTAR' : `R$ ${realEstate.price}`}
+            {realEstate.price === null ? 'R$ A CONSULTAR' : `${realEstate.price}`}
           </p>
           <p className={styles.negotiation}>
             {realEstate.negotiation.toUpperCase()}
@@ -39,8 +39,8 @@ export default function SlideCard({ realEstate }: props) {
         <div className="d-flex px-4 pt-1 pb-4 align-items-center gap-3">
           <Image src={"/cardIcons/areaIcon.svg"} width={35} height={35} alt="Ícone de área do imóvel" />
           <p>
-            {realEstate.buildingArea === null ? `${realEstate.totalArea} m² de área total` :
-              `${realEstate.buildingArea} m² de área construída`}
+            {realEstate.buildingArea === null ? `${realEstate.totalArea} de área total` :
+              `${realEstate.buildingArea} de área construída`}
           </p>
         </div>
       </div>

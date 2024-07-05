@@ -53,9 +53,9 @@ export default function Slide({ realEstate }: props) {
             }
           }}
         >
-          {realEstate?.map((realEstate) => (
-            <SplideSlide key={realEstate.id}>
-              <SlideCard realEstate={realEstate} />
+          {Array.isArray(realEstate) && realEstate.map((realEstateItem) => (
+            <SplideSlide key={realEstateItem.id}>
+              <SlideCard realEstate={realEstateItem} />
             </SplideSlide>
           ))}
         </Splide>
