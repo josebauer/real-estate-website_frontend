@@ -1,0 +1,45 @@
+.main {
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.title {
+  font-weight: bold;
+  color: #000;
+}
+
+.cards {
+  margin-top: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+.cardItem {
+  &:hover {
+    transform: scale(1.05);
+    transition: 0.5s linear;
+  }
+}
+
+@media screen and (min-width: 475px) {
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cardImage {
+    width: 203px;
+    height: 107px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
