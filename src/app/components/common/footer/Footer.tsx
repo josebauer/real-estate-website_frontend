@@ -76,19 +76,19 @@ export default function Footer() {
               <p className="mb-1">CEP - 00000-000 | Canoinhas-SC</p>
             </div>
             <div className="d-flex gap-3">
-              <Image src="/email-icon.svg" alt="ícone de email" width={25} height={25} />
+              <Image src="/icons/email-icon.svg" alt="ícone de email" width={25} height={25} />
               <Link className={styles.link} href="mailto:imobiliariajh@email.com">
                 imobiliariajh@email.com
               </Link>
             </div>
             <div className="d-flex gap-3">
-              <Image src="/whatsapp-icon.svg" alt="ícone do aplicativo whatsapp" width={25} height={25} />
+              <Image src="/icons/whatsapp-icon.svg" alt="ícone do aplicativo whatsapp" width={25} height={25} />
               <Link className={styles.link} href="tel:(47) 9 9999-9999">
                 (47) 9 9999-9999
               </Link>
             </div>
             <div className="d-flex gap-3">
-              <Image src="/phone-icon.svg" alt="ícone de telefone" width={25} height={25} />
+              <Image src="/icons/phone-icon.svg" alt="ícone de telefone" width={25} height={25} />
               <Link className={styles.link} href="tel:(47) 3622-0000">
                 (47) 3622-0000
               </Link>

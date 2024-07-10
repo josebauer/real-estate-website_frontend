@@ -24,20 +24,20 @@ export default function SlideCard({ realEstate }: props) {
           </p>
         </div>
         <div className="d-flex px-4 py-1 align-items-center gap-3">
-          <Image src={"/cardIcons/bedroomIcon.svg"} width={35} height={33} alt="Ícone de cama" />
+          <Image src={"/icons/cardIcons/bedroomIcon.svg"} width={35} height={33} alt="Ícone de cama" />
           <p>
             {realEstate.bedrooms === null ? '0' : realEstate.bedrooms} quarto(s)
             {realEstate.suites === null ? '' : `, sendo ${realEstate.suites} suíte(s)`}
           </p>
         </div>
         <div className="d-flex px-4 py-1 align-items-center gap-3">
-          <Image src={"/cardIcons/garageIcon.svg"} width={35} height={35} alt="Ícone de garagem" />
+          <Image src={"/icons/cardIcons/garageIcon.svg"} width={35} height={35} alt="Ícone de garagem" />
           <p>
             {realEstate.garages === null ? '0' : realEstate.garages} vaga(s) de garagem
           </p>
         </div>
         <div className="d-flex px-4 pt-1 pb-4 align-items-center gap-3">
-          <Image src={"/cardIcons/areaIcon.svg"} width={35} height={35} alt="Ícone de área do imóvel" />
+          <Image src={"/icons/cardIcons/areaIcon.svg"} width={35} height={35} alt="Ícone de área do imóvel" />
           <p>
             {realEstate.buildingArea === null ? `${realEstate.totalArea} de área total` :
               `${realEstate.buildingArea} de área construída`}

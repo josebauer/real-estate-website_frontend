@@ -12,5 +12,15 @@ main {
   background-color: $light-gray;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+}
 
+::-webkit-scrollbar-track {
+  background: $light-gray;
+}
 
+::-webkit-scrollbar-thumb {
+  background: $medium-blue;
+  border-radius: 40px;
+}

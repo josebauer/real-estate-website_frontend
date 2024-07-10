@@ -17,7 +17,7 @@ export default function Header() {
 
           <Link href="tel:(47) 9 9759-4781">
             <Button className={styles.navBtn}>
-              <Image src="/whatsapp-icon.svg" alt="Ícone do whatsapp" width={15} height={15} className="me-2" />
+              <Image src="/icons/whatsapp-icon.svg" alt="Ícone do whatsapp" width={15} height={15} className="me-2" />
               (47) 9 99769-4781
             </Button>
           </Link>
@@ -37,7 +37,7 @@ export default function Header() {
               <NavLink href="/contact" className="text-light">Contato</NavLink>
             </Nav>
             <div className="d-flex align-items-center gap-2 my-3 ">
-              <Image src="/profile-icon.svg" alt="Ícone do perfil" width={25} height={25} />
+              <Image src="/icons/profile-icon.svg" alt="Ícone do perfil" width={25} height={25} />
               <NavLink href="/login" className="text-light">Entrar</NavLink>
               /
               <NavLink href="/register" className="text-light">Registrar</NavLink>
