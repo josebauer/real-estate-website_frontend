@@ -5,14 +5,29 @@
   padding: 1rem;
 }
 
+.listsContainer {
+  flex-direction: column;
+
+  .listWithTitle {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
 .list {
-  border-right: 1px solid #FFF;
-  padding-right: 4rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.listWithTitle, .socialMediasList {
+  border-bottom: 1px solid #FFF;
+  padding-bottom: 4rem;
 }
 
 .listTitle {
   font-weight: bold;
-  margin-left: -1rem;
+  text-align: center;
 }
 
 .listItem {
@@ -21,9 +36,11 @@
   margin-left: -1rem;
 }
 
-.realEstateData p {
-  font-size: 0.88rem;
-  line-height: 0.7rem;
+.realEstateData {
+  p {
+    font-size: 0.88rem;
+    line-height: 0.7rem;
+  }
 }
 
 .contactArea {
@@ -36,6 +53,10 @@
   text-decoration: none;
   color: #FFF;
 
+  p {
+    display: none;
+  }
+
   &:hover {
     text-decoration: underline;
   }
@@ -45,4 +66,56 @@
   font-size: 0.88rem;
   text-align: center;
   padding-top: 1rem;
+}
+
+@media screen and (min-width: 480px) {
+  .listWithTitle {
+    align-items: center;
+  }
+
+  .list {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 5rem;
+  }
+}
+
+
+@media screen and (min-width: 992px) {
+  .listsContainer {
+    flex-direction: row;
+  }
+
+  .list {
+    grid-template-columns: 1fr;
+  }
+
+  .listWithTitle {
+    border-bottom: none;
+    border-right: 1px solid #FFF;
+    padding-bottom: 0;
+    padding-right: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .socialMediasList {
+    border: none;
+    padding-bottom: 0;
+    gap: 1.5rem;
+  } 
+
+  .listTitle {
+    padding-left: 1rem;
+  }
+
+  .contactArea {
+    flex-direction: row;
+  }
+
+  .link {
+    p {
+      display: block;
+    }
+  }
 }
