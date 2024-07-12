@@ -1,0 +1,80 @@
+@import "../../../variables.module.scss";
+
+.modal {
+
+  .modalHeader {
+    display: block;
+    text-align: center;
+  }
+
+  .modalTitle {
+    padding: 2rem 1rem;
+    font-size: 1.25rem;
+  }
+
+  .modalHeader,
+  .modalBody,
+  .modalFooter {
+    border: none;
+    padding: 0.5rem 3rem;
+    background-color: $dark-blue;
+  }
+
+  .modalFooter {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.accountButton {
+  display: grid;
+  grid-template-columns: 0.2fr 3.8fr;
+  align-items: center;
+  justify-items: center;
+  padding: 0.7rem 1.25rem;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.facebookButton {
+  background-color: #4767AB;
+  border-color: #4767AB;
+}
+
+.registerName {
+  display: flex;
+  gap: 1rem;
+}
+
+.button {
+  padding: 0.5rem 3rem;
+  border: 2px solid #FFF;
+  border-radius: 10px;
+  background-color: $light-blue;
+
+  &:hover {
+    background-color: $medium-blue;
+    border: 2px solid #FFF
+  }
+}
+
+.textSmall {
+  font-size: 14px;
+}
+
+.linkButton {
+  font-size: 14px;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  text-decoration: none;
+  padding: 0;
+  font-style: italic;
+
+  &:hover {
+    color: $light-gray;
+    text-decoration: underline;
+  }
+}

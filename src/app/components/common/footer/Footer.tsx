@@ -1,9 +1,22 @@
-import { Container } from "react-bootstrap";
+"use client"
+
+import { Button, Container } from "react-bootstrap";
 import styles from "./footer.module.scss"
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import LoginRegisterModal from "../loginRegisterModal/LoginRegisterModal";
 
 export default function Footer() {
+  const [showModal, setShowModal] = useState(false);
+  const [initialMode, setInitialMode] = useState<'login' | 'register'>('login');
+
+  const handleShowModal = (mode: 'login' | 'register') => {
+    setInitialMode(mode);
+    setShowModal(true);
+  };
+  const handleCloseModal = () => setShowModal(false);
+
   return (
     <>
       <footer className={styles.footer}>
@@ -31,14 +44,14 @@ export default function Footer() {
               <p className={styles.listTitle}>Minha Conta</p>
               <ul className={styles.list}>
                 <li>
-                  <Link href="/login" className={styles.link} >
+                  <Button id={styles.linkLogin} variant="link" onClick={() => handleShowModal('login')} className={`${styles.link} p-0`} >
                     Entrar
-                  </Link>
+                  </Button>
                 </li>
                 <li>
-                  <Link href="/register" className={styles.link} >
+                  <Button id={styles.linkRegister} variant="link" onClick={() => handleShowModal('register')} className={`${styles.link} p-0`} >
                     Registrar
-                  </Link>
+                  </Button>
                 </li>
                 <li>
                   <Link href="/favorites" className={styles.link} >
@@ -103,6 +116,7 @@ export default function Footer() {
           <p className={styles.copyright}>Desenvolvido por José Henrique Bauer &copy; 2024 Todos os direitos reservados</p>
         </Container>
       </footer>
+      <LoginRegisterModal show={showModal} handleClose={handleCloseModal} initialMode={initialMode} />
     </>
   )
 }

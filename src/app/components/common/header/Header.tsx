@@ -1,11 +1,25 @@
+"use client"
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button, Container, Nav, NavLink, Navbar, NavbarCollapse, NavbarToggle } from "react-bootstrap";
 import styles from "./header.module.scss"
+import LoginRegisterModal from "../loginRegisterModal/LoginRegisterModal";
+import { useState } from "react";
 
 export default function Header() {
+  const [showModal, setShowModal] = useState(false);
+  const [initialMode, setInitialMode] = useState<'login' | 'register'>('login');
+
+  const handleShowModal = (mode: 'login' | 'register') => {
+    setInitialMode(mode);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => setShowModal(false);
 
   return (
+  <>
     <header className="fixed-top">
       <div className="bg-light">
         <Container className="d-flex align-items-center justify-content-between">
@@ -38,14 +52,15 @@ export default function Header() {
             </Nav>
             <div className="d-flex align-items-center gap-2 my-3 ">
               <Image src="/icons/profile-icon.svg" alt="Ícone do perfil" width={25} height={25} />
-              <NavLink href="/login" className="text-light">Entrar</NavLink>
+              <NavLink onClick={() => handleShowModal('login')} className="text-light">Entrar</NavLink>
               /
-              <NavLink href="/register" className="text-light">Registrar</NavLink>
+              <NavLink onClick={() => handleShowModal('register')} className="text-light">Registrar</NavLink>
             </div>
           </NavbarCollapse>
         </Container>
       </Navbar>
     </header>
-
+    <LoginRegisterModal show={showModal} handleClose={handleCloseModal} initialMode={initialMode}/>
+  </>
   )
 }
