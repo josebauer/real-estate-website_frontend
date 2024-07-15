@@ -5,18 +5,15 @@ import Link from "next/link";
 import { Button, Container, Nav, NavLink, Navbar, NavbarCollapse, NavbarToggle } from "react-bootstrap";
 import styles from "./header.module.scss"
 import LoginRegisterModal from "../loginRegisterModal/LoginRegisterModal";
-import { useState } from "react";
+import { useModal } from "@/app/hooks/useModal";
 
 export default function Header() {
-  const [showModal, setShowModal] = useState(false);
-  const [initialMode, setInitialMode] = useState<'login' | 'register'>('login');
-
-  const handleShowModal = (mode: 'login' | 'register') => {
-    setInitialMode(mode);
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => setShowModal(false);
+  const { 
+    showModal, 
+    initialMode, 
+    handleShowModal, 
+    handleCloseModal 
+  } = useModal()
 
   return (
   <>

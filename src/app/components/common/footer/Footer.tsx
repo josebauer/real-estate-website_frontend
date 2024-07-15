@@ -4,18 +4,16 @@ import { Button, Container } from "react-bootstrap";
 import styles from "./footer.module.scss"
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import LoginRegisterModal from "../loginRegisterModal/LoginRegisterModal";
+import { useModal } from "@/app/hooks/useModal";
 
 export default function Footer() {
-  const [showModal, setShowModal] = useState(false);
-  const [initialMode, setInitialMode] = useState<'login' | 'register'>('login');
-
-  const handleShowModal = (mode: 'login' | 'register') => {
-    setInitialMode(mode);
-    setShowModal(true);
-  };
-  const handleCloseModal = () => setShowModal(false);
+  const { 
+    showModal, 
+    initialMode, 
+    handleShowModal, 
+    handleCloseModal 
+  } = useModal()
 
   return (
     <>
