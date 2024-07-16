@@ -1,5 +1,5 @@
 import { Container } from "react-bootstrap";
-import { RealEstateType } from "@/app/services/realEstateService";
+import { RealEstateType } from "@/services/realEstateService";
 import styles from "./slideSection.module.scss";
 import Slide from "../common/slide/Slide";
 

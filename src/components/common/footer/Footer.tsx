@@ -5,7 +5,7 @@ import styles from "./footer.module.scss"
 import Image from "next/image";
 import Link from "next/link";
 import LoginRegisterModal from "../loginRegisterModal/LoginRegisterModal";
-import { useModal } from "@/app/hooks/useModal";
+import { useModal } from "@/hooks/useModal";
 
 export default function Footer() {
   const { 

@@ -2,8 +2,8 @@ import "./globals.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Header from "./components/common/header/Header";
-import Footer from "./components/common/footer/Footer";
+import Header from "../components/common/header/Header";
+import Footer from "../components/common/footer/Footer";
 
 const inter = Inter({ subsets: ["latin"], weight: "variable"  });
 

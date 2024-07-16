@@ -3,7 +3,7 @@
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import styles from "./slide.module.scss";
-import { RealEstateType } from '@/app/services/realEstateService';
+import { RealEstateType } from '@/services/realEstateService';
 import SlideCard from '../slideCard/SlideCard';
 
 interface props {

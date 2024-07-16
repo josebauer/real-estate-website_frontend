@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styles from "./slideCard.module.scss";
-import { RealEstateType } from "@/app/services/realEstateService";
+import { RealEstateType } from "@/services/realEstateService";
 
 interface props {
   realEstate: RealEstateType

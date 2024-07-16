@@ -1,0 +1,103 @@
+@import "../variables.module.scss";
+
+.contactContainer {
+  padding-top: 137px;
+
+  p,
+  .label {
+    color: #000;
+  }
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.map {
+  position: relative;
+
+  .iframe {
+    min-height: 85vh;
+  }
+}
+
+.contact {
+  padding: 2rem;
+  background-color: #FFF;
+  border-radius: 20px;
+  overflow: hidden;
+
+  position: absolute;
+  top: 40%;
+  left: 5%;
+  right: 5%;
+}
+
+.listItem {
+  list-style: none;
+  margin-left: -2rem;
+
+  .linkItem {
+    display: flex;
+    gap: 1rem;
+
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+      color: #000;
+    }
+  }
+}
+
+.form {
+  display: grid;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 20px;
+  background-color: #FFF;
+  max-width: 450px;
+
+  .input {
+    &:focus {
+      box-shadow: none;
+      border: 1px solid $dark-blue;
+    }
+  }
+  
+  .button {
+    margin-top: 1rem;
+    padding: 0.5rem 3rem;
+    border-radius: 10px;
+    border: none;
+    background-color: $dark-blue;
+    justify-self: center;
+
+    &:hover {
+      background-color: $medium-blue;
+      border: none;
+    }
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .contact {
+    border-radius: 20px 0 0 20px;
+    left: 30%;
+    right: 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .contact {
+    top: 40%;
+    left: 50%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .contact {
+    left: 60%;
+  }
+}

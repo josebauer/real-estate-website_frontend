@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Button, Container, Nav, NavLink, Navbar, NavbarCollapse, NavbarToggle } from "react-bootstrap";
 import styles from "./header.module.scss"
 import LoginRegisterModal from "../loginRegisterModal/LoginRegisterModal";
-import { useModal } from "@/app/hooks/useModal";
+import { useModal } from "@/hooks/useModal";
 
 export default function Header() {
   const { 
