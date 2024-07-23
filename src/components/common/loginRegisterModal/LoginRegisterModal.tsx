@@ -13,6 +13,7 @@ interface LoginRegisterModalProps {
 
 export default function LoginRegisterModal({ show, handleClose, initialMode }: LoginRegisterModalProps) {
   const [isLogin, setIsLogin] = useState(initialMode === 'login')
+  const [toastColor, setToastColor] = useState('')
   const [toastShow, setToastShow] = useState(false)
   const [toastMessage, setToastMessage] = useState('')
 
@@ -41,6 +42,7 @@ export default function LoginRegisterModal({ show, handleClose, initialMode }: L
     }
 
     if (password != repeatPassword) {
+      setToastColor('bg-danger')
       setToastShow(true)
       setTimeout(() => {
         setToastShow(false)
@@ -55,17 +57,41 @@ export default function LoginRegisterModal({ show, handleClose, initialMode }: L
     if (status === 201) {
       handleSwitch()
 
+      setToastColor('bg-success')
       setToastShow(true)
       setTimeout(() => {
         setToastShow(false)
       }, 1000 * 3)
       setToastMessage('Cadastro realizado com sucesso!')
     } else {
+      setToastColor('bg-danger')
       setToastShow(true)
       setTimeout(() => {
         setToastShow(false)
       }, 1000 * 3)
       setToastMessage(data.message)
+    }
+  }
+
+  const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    const formData = new FormData(event.currentTarget)
+    const email = formData.get("email")!.toString()
+    const password = formData.get("password")!.toString()
+    const params = { email, password }
+
+    const { status } = await authService.login(params)
+
+    if (status === 200) {
+      handleClose()
+    } else {
+      setToastColor('bg-danger')
+      setToastShow(true)
+      setTimeout(() => {
+        setToastShow(false)
+      }, 1000 * 3)
+      setToastMessage('Email ou senha incorretos.')
     }
   }
 
@@ -89,7 +115,7 @@ export default function LoginRegisterModal({ show, handleClose, initialMode }: L
           </p>
         </Modal.Header>
         <Modal.Body className={styles.modalBody}>
-          <Form className='d-flex flex-column' onSubmit={handleRegister}>
+          <Form className='d-flex flex-column' onSubmit={isLogin ? handleLogin : handleRegister}>
             {!isLogin && (
               <div className="d-flex gap-3 mb-2">
                 <Form.Group controlId="firstName">
@@ -130,8 +156,7 @@ export default function LoginRegisterModal({ show, handleClose, initialMode }: L
             <Form.Group className='mt-3' controlId="remember">
               <Form.Check className={styles.textSmall} label="Lembrar meus dados" />
             </Form.Group>
-            {isLogin && (<ToastComponent color="bg-success" show={toastShow} message={toastMessage} />)}
-            {!isLogin && (<ToastComponent color="bg-danger" show={toastShow} message={toastMessage} />)}
+            <ToastComponent color={toastColor} show={toastShow} message={toastMessage} />
             <Button className={styles.button} type="submit" variant="primary" >
               {isLogin ? 'Entrar' : 'Registrar-se'}
             </Button>
