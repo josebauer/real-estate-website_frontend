@@ -20,8 +20,60 @@
   color: $medium-blue;
 }
 
+.userProfile {
+  font-weight: bold;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 4px;
+  border: 2px solid #FFF;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 0;
+}
+
+.reactModal {
+  position: absolute;
+  width: 200px;
+  height: 160px;
+  top: 390px;
+  padding: 1rem;
+  background-color: #FFF;
+  border-radius: 5px;
+  outline: none;
+
+  box-shadow: 6px 6px 4px rgba(0, 0, 0, 0.26);
+}
+
+.overlayModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+}
+
+
+.modalLink {
+  font-weight: bold;
+  margin: 5px 0;
+  cursor: pointer;
+  color: $dark-blue;
+  transition: 0.3s;
+  &:hover {
+    color: $medium-blue;
+  }
+}
+
 @media screen and (min-width: 375px) {
   .navBtn {
     font-size: 0.88rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .reactModal {
+    top: 135px;
+    right: 15%;
   }
 }

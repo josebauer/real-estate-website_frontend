@@ -85,6 +85,7 @@ export default function LoginRegisterModal({ show, handleClose, initialMode }: L
 
     if (status === 200) {
       handleClose()
+      location.reload();
     } else {
       setToastColor('bg-danger')
       setToastShow(true)

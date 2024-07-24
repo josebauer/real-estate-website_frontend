@@ -6,13 +6,17 @@ import Image from "next/image";
 import Link from "next/link";
 import LoginRegisterModal from "../loginRegisterModal/LoginRegisterModal";
 import { useModal } from "@/hooks/useModal";
+import { useAuth } from "@/contexts/AuthContext";
+import { handleLogout } from "@/utils/handleLogout";
 
 export default function Footer() {
-  const { 
-    showModal, 
-    initialMode, 
-    handleShowModal, 
-    handleCloseModal 
+  const { isAuthenticated, logout } = useAuth()
+
+  const {
+    showModal,
+    initialMode,
+    handleShowModal,
+    handleCloseModal
   } = useModal()
 
   return (
@@ -41,26 +45,43 @@ export default function Footer() {
             <div className={styles.listWithTitle}>
               <p className={styles.listTitle}>Minha Conta</p>
               <ul className={styles.list}>
-                <li>
-                  <Button id={styles.linkLogin} variant="link" onClick={() => handleShowModal('login')} className={`${styles.link} p-0`} >
-                    Entrar
-                  </Button>
-                </li>
-                <li>
-                  <Button id={styles.linkRegister} variant="link" onClick={() => handleShowModal('register')} className={`${styles.link} p-0`} >
-                    Registrar
-                  </Button>
-                </li>
-                <li>
-                  <Link href="/favorites" className={styles.link} >
-                    Favoritos
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/schedules" className={styles.link} >
-                    Agendamentos
-                  </Link>
-                </li>
+                {isAuthenticated ? (
+                  <>
+                    <li>
+                      <Link href="/profile" className={styles.link} >
+                        Meus dados
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/favorites" className={styles.link} >
+                        Favoritos
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/schedules" className={styles.link} >
+                        Agendamentos
+                      </Link>
+                    </li>
+                    <li>
+                      <p onClick={() => handleLogout(logout)} className={styles.link} >
+                        Sair
+                      </p>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li>
+                      <Button id={styles.linkLogin} variant="link" onClick={() => handleShowModal('login')} className={`${styles.link} p-0`} >
+                        Entrar
+                      </Button>
+                    </li>
+                    <li>
+                      <Button id={styles.linkRegister} variant="link" onClick={() => handleShowModal('register')} className={`${styles.link} p-0`} >
+                        Registrar
+                      </Button>
+                    </li>
+                  </>
+                )}
               </ul>
             </div>
             <div className="d-flex flex-column gap-4">
@@ -89,7 +110,7 @@ export default function Footer() {
           </div>
           <div className={`${styles.contactArea} d-flex flex-column flex-xl-row  align-items-xl-center mt-5 gap-5`}>
             <div className="d-flex flex-column flex-sm-row gap-5 align-items-center justify-content-center">
-              <Image src="/logo-white.svg" alt="Logo da imobiliária JH" width={109} height={68} />
+              <Image src="/logo-white.svg" alt="Logo da imobiliária JH" priority width={109} height={68} />
               <div className={styles.realEstateData}>
                 <p>CRECI nº 0.123-J</p>
                 <p>Rua XxxxX, nº 000, Centro</p>
