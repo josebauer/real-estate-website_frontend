@@ -20,6 +20,11 @@ export type RealEstateType = {
   featured: boolean
 }
 
+export interface NegotiationParams {
+  negotiation: string
+  realEstate?: RealEstateType
+}
+
 const realEstateService = {
   getNewestRealEstate: async () => {
     const res = await api.get('/real-estate/newest').catch((error) => {
@@ -39,6 +44,16 @@ const realEstateService = {
     })
 
     return res.data
+  },
+
+  getRealEstateByNegotiation: async (params: NegotiationParams) => {
+    const res = await api.get('/real-estate/filter', { params }).catch((error) => {
+      console.log(error.response.data.message)
+
+      return error.respons
+    })
+
+    return res.data.realEstate
   }
 }
 
