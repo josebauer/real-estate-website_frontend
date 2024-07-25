@@ -26,6 +26,16 @@
   }
 }
 
+.input {
+  &:focus {
+    box-shadow: none;
+    
+    &::placeholder {
+      color: transparent;
+    }
+  }
+}
+
 .accountButton {
   display: grid;
   grid-template-columns: 0.2fr 3.8fr;
