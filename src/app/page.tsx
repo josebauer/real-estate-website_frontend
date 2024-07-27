@@ -22,7 +22,7 @@ export default async function Home() {
         <SearchSection />
         <SlideSection realEstate={newestRealEstate} title="Novidades" />
         <SlideSection realEstate={featuredRealEstate} title="Imóveis em destaque" />
-        <SlideSection realEstate={realEstateSale} title="Imóveis a venda" />
+        <SlideSection realEstate={realEstateSale} title="Imóveis à venda" />
         <SlideSection realEstate={realEstateRent} title="Imóveis para locação" />
       </main>
     </>
