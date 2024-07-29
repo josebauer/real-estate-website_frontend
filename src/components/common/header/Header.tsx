@@ -6,14 +6,24 @@ import { Button, Container, Nav, NavLink, Navbar, NavbarCollapse, NavbarToggle }
 import styles from "./header.module.scss"
 import LoginRegisterModal from "../loginRegisterModal/LoginRegisterModal";
 import { useModal } from "@/hooks/useModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactModal from "react-modal";
 import { useAuth } from "@/contexts/AuthContext";
 import { handleLogout } from "@/utils/handleLogout";
+import profileService from "@/services/profileService";
 
 export default function Header() {
   const [modalOpen, setModalOpen] = useState(false)
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
   const { isAuthenticated, logout } = useAuth()
+
+  useEffect(() => {
+    profileService.fetchCurrent().then((user) => {
+      setFirstName(user.firstName)
+      setLastName(user.lastName)
+    })
+  })
 
   const handleOpenReactModal = () => {
     setModalOpen(true)
@@ -65,8 +75,8 @@ export default function Header() {
               <div className="d-flex align-items-center gap-2 my-3 ">
                 {isAuthenticated ? (
                   <>
-                    <Image onClick={handleOpenReactModal} className={styles.userProfile} src="/icons/profile-icon.svg" alt="Ícone do perfil" width={25} height={25} />
-                    <p className="m-0">Bem-vindo(a)!</p>
+                    <p onClick={handleOpenReactModal} className={styles.profileIcon}>{firstName?.slice(0, 1).toUpperCase()}{lastName?.slice(0, 1).toUpperCase()}</p>
+                    <p className="m-0">Olá, {firstName}!</p>
                   </>
                 ) : (
                   <>

@@ -14,44 +14,6 @@
   color: #000;
 }
 
-.cardHeader {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid $dark-blue;
-}
-
-.profileIcon {
-  border: 2px solid $dark-blue;
-  color: $dark-blue;
-  background-color: $dark-blue;
-  border-radius: 50%;
-  padding: 3px;
-  min-width: 50px;
-  min-height: 50px;
-}
-
-.userName {
-  font-size: 1.125rem;
-  text-align: center;
-  font-weight: 600;
-  color: $dark-blue;
-  margin: 0;
-}
-
-.cardForm {
-  align-self: center;
-  justify-self: center;
-  min-width: 300px;
-  padding: 2rem;
-  margin-bottom: 3rem;
-  background-color: #FFF;
-  border-radius: 10px;
-
-}
-
 .button {
   background-color: $dark-blue;
   border-radius: 10px;
@@ -65,15 +27,8 @@
   }
 }
 
-@media screen and (min-width: 576px) {
-  .userName {
-    font-size: 1.5rem;
-  }
-}
-
 @media screen and (min-width: 992px) {
   .title {
-    font-size: 2.5rem;
     margin-top: 0;
     margin-bottom: 3rem;
   }
@@ -83,9 +38,10 @@
     align-items: center;
     justify-content: space-between;
   }
+}
 
-  .card-form {
-    padding: 3rem;
-    width: 700px;
+@media screen and (min-width: 1200px) {
+  .title {
+    font-size: 2.5rem;
   }
 }

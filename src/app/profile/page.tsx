@@ -1,9 +1,8 @@
 "use client"
 
-import Image from "next/image";
 import styles from "./page.module.scss";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import UserForm from "@/components/userForm/userForm";
+import { Button, Container } from "react-bootstrap";
+import UserForm from "../../components/userForm/UserForm";
 
 export default function Profile() {
   return (
@@ -17,13 +16,7 @@ export default function Profile() {
               <Button className={styles.button}>Alteração de Senha</Button>
             </div>
           </div>
-          <div className={`${styles.cardForm} shadow`}>
-            <div className={styles.cardHeader}>
-              <Image src="/icons/profile-icon.svg" alt="Ícone de perfil" className={styles.profileIcon} width={45} height={45} />
-              <p className={styles.userName}>Nome do usuário</p>
-            </div>
-            <UserForm />
-          </div>
+          <UserForm />
         </Container>
       </main>
     </>
