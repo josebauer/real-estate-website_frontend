@@ -1,0 +1,33 @@
+@import "/src/app/variables.module.scss";
+
+.form {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+
+  .button {
+    align-self: center;
+    background-color: $dark-blue;
+    border-radius: 10px;
+    border: none;
+    padding: 0.7rem 1.5rem;
+  
+    transition: 0.5s;
+  
+    &:hover {
+      background-color: $medium-blue;
+    }
+  }
+}
+
+.label {
+  color: $dark-blue;
+  font-weight: 600;
+}
+
+.input {
+  &:focus {
+    box-shadow: none;
+    border-color: $dark-blue;
+  }
+}
