@@ -9,15 +9,43 @@
   margin: 5px 0;
   font-size: 0.75rem;
   border: none;
-  
+
   &:hover {
     background-color: $medium-blue;
   }
 }
 
+.dropdownItem {
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+
+  .dropdownLink {
+    text-decoration: none;
+    color: $dark-blue;
+
+    &:hover {
+      color: $medium-blue;
+    }
+  }
+}
+
+.logo {
+  order: 2;
+}
+
 .navbarToggle {
   background-color: #FFF;
   color: $medium-blue;
+
+  order: 3;
+}
+
+.navbarCollapse {
+  order: 3;
+}
+
+.welcome {
+  display: none;
 }
 
 .profileIcon {
@@ -30,7 +58,7 @@
   background-color: $dark-blue;
   border: 2px solid #FFF;
   border-radius: 50%;
-  margin: 0 0.5rem;
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,9 +68,9 @@
 .reactModal {
   position: absolute;
   width: 200px;
-  height: 160px;
+  height: 180px;
   top: 390px;
-  padding: 1rem;
+  padding: 0.5rem 0;
   background-color: #FFF;
   border-radius: 5px;
   outline: none;
@@ -59,15 +87,18 @@
   background-color: transparent;
 }
 
-
 .modalLink {
   font-weight: bold;
-  margin: 5px 0;
+  margin: 0;
+  padding: 0.5rem 1.5rem;
   cursor: pointer;
   color: $dark-blue;
   transition: 0.3s;
+
+
   &:hover {
     color: $medium-blue;
+    background-color: $light-gray;
   }
 }
 
@@ -77,9 +108,27 @@
   }
 }
 
+@media screen and (min-width: 768px) {
+  .welcome {
+    display: block;
+  }
+}
+
 @media screen and (min-width: 992px) {
   .reactModal {
     top: 135px;
     right: 15%;
+  }
+
+  .logo {
+    order: unset;
+  }
+
+  .navbarToggle {
+    order: unset;
+  }
+
+  .navbarCollapse {
+    order: unset;
   }
 }

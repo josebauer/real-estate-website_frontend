@@ -131,11 +131,11 @@ export default function LoginRegisterModal({ show, handleClose, initialMode }: L
           <Form className='d-flex flex-column' onSubmit={isLogin ? handleLogin : handleRegister}>
             {!isLogin && (
               <div className="d-flex gap-3 mb-2">
-                <Form.Group controlId="firstName">
+                <Form.Group>
                   <Form.Label htmlFor='firstName' className={styles.textSmall}>Nome</Form.Label>
                   <Form.Control name='firstName' id='firstName' type="text" className={styles.input} placeholder="Digite seu nome" required />
                 </Form.Group>
-                <Form.Group controlId="lastName">
+                <Form.Group>
                   <Form.Label htmlFor='lastName' className={styles.textSmall}>Sobrenome</Form.Label>
                   <Form.Control name='lastName' id='lastName' type="text" className={styles.input} placeholder="Digite seu sobrenome" required />
                 </Form.Group>
@@ -143,31 +143,31 @@ export default function LoginRegisterModal({ show, handleClose, initialMode }: L
             )}
             {!isLogin && (
               <div>
-                <Form.Group className='mb-2' controlId="phone">
+                <Form.Group className='mb-2'>
                   <Form.Label htmlFor='phone' className={styles.textSmall}>Telefone</Form.Label>
                   <Form.Control name='phone' id='phone' type="text" className={styles.input} placeholder="Digite seu telefone" required />
                 </Form.Group>
               </div>
             )}
-            <Form.Group className='mb-2' controlId="email">
+            <Form.Group className='mb-2'>
               <Form.Label htmlFor='email' className={styles.textSmall}>Email</Form.Label>
-              <Form.Control name='email' id='email' type="email" className={styles.input} placeholder="Digite seu email" required />
+              <Form.Control name='email' id='email' type="email" autoComplete='on' className={styles.input} placeholder="Digite seu email" required />
             </Form.Group>
             <div className={`d-flex gap-3 ${isLogin ? 'flex-column' : ''} `}>
-              <Form.Group controlId="password">
+              <Form.Group>
                 <Form.Label htmlFor='password' className={styles.textSmall}>Senha</Form.Label>
                 <Form.Control name='password' id='password' type="password" className={styles.input} placeholder="Digite sua senha" required />
               </Form.Group>
               {isLogin && (<Button className={`${styles.linkButton} align-self-end`} variant='link'>Esqueci minha senha</Button>)}
               {!isLogin && (
-                <Form.Group controlId="repeatPassword">
+                <Form.Group>
                   <Form.Label htmlFor='repeatPassword' className={styles.textSmall}>Repetir Senha</Form.Label>
                   <Form.Control name='repeatPassword' id='repeatPassword' type="password" className={styles.input} placeholder="Repita a senha" required />
                 </Form.Group>
               )}
             </div>
-            <Form.Group className='mt-3' controlId="remember">
-              <Form.Check className={styles.textSmall} label="Lembrar meus dados" />
+            <Form.Group className='mt-3'>
+              <Form.Check className={styles.textSmall} id="remember" label="Lembrar meus dados" />
             </Form.Group>
             <ToastComponent color={toastColor} show={toastShow} message={toastMessage} />
             <Button className={styles.button} type="submit" variant="primary" >

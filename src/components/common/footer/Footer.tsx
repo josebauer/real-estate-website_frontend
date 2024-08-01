@@ -8,8 +8,13 @@ import LoginRegisterModal from "../loginRegisterModal/LoginRegisterModal";
 import { useModal } from "@/hooks/useModal";
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
+import { CategoryType } from "@/services/categoriesService";
 
-export default function Footer() {
+interface props {
+  categories: CategoryType[]
+}
+
+export default function Footer({ categories }: props) {
   const { isAuthenticated, logout } = useAuth()
 
   const router = useRouter()
@@ -34,19 +39,17 @@ export default function Footer() {
             <div className={styles.listWithTitle}>
               <p className={styles.listTitle}>Venda</p>
               <ul className={styles.list}>
-                <li>Casas</li>
-                <li>Apartamentos</li>
-                <li>Lotes</li>
-                <li>Salas comerciais</li>
+                {Array.isArray(categories) && categories.map((category) => (
+                  <li key={category.id}>{category.name.replace(/(^\w{1})/, firstLetter => firstLetter.toUpperCase())}</li>
+                ))}
               </ul>
             </div>
             <div className={styles.listWithTitle}>
               <p className={styles.listTitle}>Locação</p>
               <ul className={styles.list}>
-                <li>Casas</li>
-                <li>Apartamentos</li>
-                <li>Lotes</li>
-                <li>Salas comerciais</li>
+                {Array.isArray(categories) && categories.map((category) => (
+                  <li key={category.id}>{category.name.replace(/(^\w{1})/, firstLetter => firstLetter.toUpperCase())}</li>
+                ))}
               </ul>
             </div>
             <div className={styles.listWithTitle}>

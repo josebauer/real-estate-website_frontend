@@ -13,6 +13,29 @@ main {
   min-height: 100vh;
 }
 
+.nav-link.dropdown-toggle {
+  color: #FFF !important;
+}
+
+.dropdown-item.active,
+.dropdown-item {
+  &:active {
+    color: #FFF !important;
+    background-color: #FFF !important;
+  }
+
+  &:hover {
+    background-color: $light-gray !important;
+  }
+}
+
+.nav-link.dropdown-toggle {
+  &:focus {
+    color: #FFF !important;
+  }
+}
+
+
 ::-webkit-scrollbar {
   width: 8px;
 }
