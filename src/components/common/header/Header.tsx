@@ -9,14 +9,18 @@ import { useModal } from "@/hooks/useModal";
 import { useEffect, useState } from "react";
 import ReactModal from "react-modal";
 import { useAuth } from "@/contexts/AuthContext";
-import { handleLogout } from "@/utils/handleLogout";
 import profileService from "@/services/profileService";
+import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
   const [modalOpen, setModalOpen] = useState(false)
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const { isAuthenticated, logout } = useAuth()
+
+  const router = useRouter()
+  const pathname = usePathname()
 
   useEffect(() => {
     profileService.fetchCurrent().then((user) => {
@@ -25,12 +29,26 @@ export default function Header() {
     })
   })
 
+  useEffect(() => {
+    setModalOpen(false)
+  }, [pathname])
+
   const handleOpenReactModal = () => {
     setModalOpen(true)
   }
 
   const handleCloseReactModal = () => {
     setModalOpen(false)
+  }
+
+  const handleLogout = () => {
+    setModalOpen(false)
+    setTimeout(() => {
+      logout()
+      setFirstName("")
+      setLastName("")
+      router.push('/')
+    }, 100)
   }
 
   const {
@@ -95,16 +113,16 @@ export default function Header() {
                 overlayClassName={styles.overlayModal}
                 ariaHideApp={false}
               >
-                <Link className="text-decoration-none" href="/profile">
+                <Link className="text-decoration-none" onClick={handleCloseReactModal} href="/profile">
                   <p className={styles.modalLink}>Meus dados</p>
                 </Link>
-                <Link className="text-decoration-none" href="/schedules">
+                <Link className="text-decoration-none" onClick={handleCloseReactModal} href="/schedules">
                   <p className={styles.modalLink}>Agendamentos</p>
                 </Link>
-                <Link className="text-decoration-none" href="/favorites">
+                <Link className="text-decoration-none" onClick={handleCloseReactModal} href="/favorites">
                   <p className={styles.modalLink}>Favoritos</p>
                 </Link>
-                <p className={styles.modalLink} onClick={() => handleLogout(logout)}>Sair</p>
+                <p className={styles.modalLink} onClick={() => handleLogout()}>Sair</p>
               </ReactModal>
             </NavbarCollapse>
           </Container>

@@ -7,10 +7,17 @@ import Link from "next/link";
 import LoginRegisterModal from "../loginRegisterModal/LoginRegisterModal";
 import { useModal } from "@/hooks/useModal";
 import { useAuth } from "@/contexts/AuthContext";
-import { handleLogout } from "@/utils/handleLogout";
+import { useRouter } from "next/navigation";
 
 export default function Footer() {
   const { isAuthenticated, logout } = useAuth()
+
+  const router = useRouter()
+
+  const handleLogout = () => {
+    logout()
+    router.push('/')
+  }
 
   const {
     showModal,
@@ -63,7 +70,7 @@ export default function Footer() {
                       </Link>
                     </li>
                     <li>
-                      <p onClick={() => handleLogout(logout)} className={styles.link} >
+                      <p onClick={() => handleLogout()} className={styles.link} >
                         Sair
                       </p>
                     </li>

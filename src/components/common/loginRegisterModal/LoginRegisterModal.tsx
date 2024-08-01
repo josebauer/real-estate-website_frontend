@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { FormEvent } from 'react';
 import authService from '@/services/authService';
 import ToastComponent from '../toast/Toast';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/contexts/AuthContext';
 interface LoginRegisterModalProps {
   show: boolean
   handleClose: () => void
@@ -16,6 +18,7 @@ export default function LoginRegisterModal({ show, handleClose, initialMode }: L
   const [toastColor, setToastColor] = useState('')
   const [toastShow, setToastShow] = useState(false)
   const [toastMessage, setToastMessage] = useState('')
+  const { login } = useAuth()
 
   useEffect(() => {
     setIsLogin(initialMode === 'login')
@@ -73,6 +76,8 @@ export default function LoginRegisterModal({ show, handleClose, initialMode }: L
     }
   }
 
+  const router = useRouter()
+
   const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
@@ -84,8 +89,15 @@ export default function LoginRegisterModal({ show, handleClose, initialMode }: L
     const { status } = await authService.login(params)
 
     if (status === 200) {
-      handleClose()
-      location.reload();
+      setToastColor('bg-success')
+      setToastShow(true)
+      setTimeout(() => {
+        login()
+        setToastShow(false)
+        handleClose()
+        router.push('/')
+      }, 1000)
+      setToastMessage('Login realizado com sucesso!')
     } else {
       setToastColor('bg-danger')
       setToastShow(true)
