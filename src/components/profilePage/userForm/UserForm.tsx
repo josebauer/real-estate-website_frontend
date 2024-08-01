@@ -1,8 +1,8 @@
+import styles from "../profilePage.module.scss";
 import { FormEvent, useEffect, useState } from "react";
-import styles from "./userForm.module.scss";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import profileService from "@/services/profileService";
-import ToastComponent from "../common/toast/Toast";
+import ToastComponent from "../../common/toast/Toast";
 import { useRouter } from "next/navigation";
 
 export default function UserForm() {
@@ -108,7 +108,7 @@ export default function UserForm() {
               onChange={(event) => { setPhone(event.target.value) }}
             />
           </Form.Group>
-          <Form.Group>
+          <Form.Group className='mb-3'>
             <Form.Label htmlFor='email' className={styles.label}>Email</Form.Label>
             <Form.Control
               name='email'
