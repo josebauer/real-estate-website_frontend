@@ -1,0 +1,170 @@
+@import "/src/app/variables.module.scss";
+
+.realEstateCard {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1.5rem;
+  border-radius: 20px;
+  background-color: #FFF;
+}
+
+.pageTitle {
+  color: #000;
+  font-weight: bold;
+  font-size: 2rem;
+  padding-top: 20vh;
+  padding-bottom: 1rem;
+  align-self: flex-start;
+}
+
+.cardTitle {
+  color: #000;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.realEstateInfos {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.location {
+  color: $medium-gray;
+  font-size: 1rem;
+}
+
+.price,
+.negotiation {
+  color: $medium-blue;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.negotiation {
+  text-transform: uppercase;
+  border: 2px solid $medium-blue;
+  border-radius: 10px;
+  justify-self: flex-end;
+  padding: 0.25rem 1rem;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.button {
+  font-weight: bold;
+  padding: 0.5rem 2rem;
+  background-color: $medium-blue;
+  border-color: $medium-blue;
+  border: 2px solid $medium-blue;
+  transition: .5s;
+
+  &:hover {
+    background-color: #FFF;
+    color: $medium-blue;
+    border: 2px solid $medium-blue;
+  }
+}
+
+.star,
+.share {
+  transition: .5s;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+}
+
+.cardDesc {
+  background-color: #FFF;
+  gap: 2rem;
+  padding: 1.5rem;
+  border-radius: 20px;
+  margin: auto;
+  margin-bottom: 2rem;
+
+  .descBox {
+    border-bottom: 1px solid #000;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    max-width: 700px;
+
+    .descTitle {
+      color: #000;
+      font-weight: bold;
+    }
+
+    .description {
+      color: #000;
+      margin-top: 1.5rem;
+    }
+  }
+
+  .address {
+    .addressTitle {
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+    }
+
+    p {
+      color: #000;
+      margin: 0;
+    }
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .realEstateCard {
+    padding: 2rem;
+  }
+
+  .cardDesc {
+    padding: 2rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .cardTitle {
+    font-size: 1.75rem;
+  }
+
+  .price,
+  .negotiation,
+  .location {
+    font-size: 1.25rem;
+  }
+}
+
+
+@media screen and (min-width: 992px) {
+  .cardDesc {
+    .descBox {
+      border-bottom: none;
+      border-right: 1px solid #000;
+      padding-right: 2rem;
+      padding-bottom: 0;
+      max-width: 500px;
+    }
+  }
+  .realEstateCard {
+    flex-direction: row;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+
+  .cardDesc {
+    .descBox {
+      max-width: 700px;
+    }
+  }
+}

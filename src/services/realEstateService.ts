@@ -49,12 +49,20 @@ const realEstateService = {
   getRealEstateByNegotiation: async (params: NegotiationParams) => {
     const res = await api.get('/real-estate/filter', { params }).catch((error) => {
       console.log(error.response.data.message)
-
-      return error.respons
+      
+      return error.response
     })
-
+    
     return res.data.realEstate
-  }
+  },
+
+  getRealEstateById: async (id: number | string) => {
+    const res = await api.get(`/real-estate/${id}`).catch((error) => {
+      return error.response
+    })
+  
+    return res
+  },
 }
 
 export default realEstateService

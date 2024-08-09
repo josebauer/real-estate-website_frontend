@@ -1,0 +1,78 @@
+.carouselWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mainImage,
+.splideMainImage {
+  border-radius: 20px;
+  height: 300px;
+}
+
+.mainImage,
+.splideMainImage,
+.splideThumbnails {
+  max-width: 500px;
+  width: 100%;
+}
+
+.thumbnailImage {
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.splideThumbnails {
+  margin-top: 0.5rem;
+}
+
+.splideSlideThumb {
+  opacity: .6;
+  border-radius: 5px;
+}
+
+@media screen and (min-width: 768px) {
+
+  .mainImage,
+  .splideMainImage {
+    height: 400px;
+  }
+
+  .mainImage,
+  .splideMainImage,
+  .splideThumbnails {
+    max-width: 650px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+
+  .mainImage,
+  .splideMainImage {
+    height: 350px;
+  }
+
+  .mainImage,
+  .splideMainImage,
+  .splideThumbnails {
+    width: 550px;
+    max-width: 550px;
+  }
+
+}
+
+@media screen and (min-width: 1400px) {
+  
+  .mainImage,
+  .splideMainImage {
+    height: 420px;
+  }
+  
+  .mainImage,
+  .splideMainImage,
+  .splideThumbnails {
+    width: 700px;
+    max-width: 700px;
+  }
+
+}
