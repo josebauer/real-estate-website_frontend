@@ -7,7 +7,7 @@ import Footer from "../components/common/footer/Footer";
 import { AuthProvider } from "@/contexts/AuthContext";
 import categoriesService from "@/services/categoriesService";
 
-const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800", "900"]  });
+const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800", "900"] });
 
 export const metadata: Metadata = {
   title: "Início | Imobiliária JH",
@@ -25,11 +25,11 @@ export default async function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={inter.className}>
-      <AuthProvider>
-        <Header categories={categories} />
-        {children}
-        <Footer categories={categories} />
-      </AuthProvider>
+        <AuthProvider>
+          <Header categories={categories} />
+          {children}
+          <Footer categories={categories} />
+        </AuthProvider>
       </body>
     </html>
   );

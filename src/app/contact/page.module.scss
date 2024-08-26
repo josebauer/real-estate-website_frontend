@@ -1,8 +1,6 @@
 @import "../variables.module.scss";
 
 .contactContainer {
-  padding-top: 137px;
-
   p,
   .label {
     color: #000;
@@ -18,7 +16,7 @@
   position: relative;
 
   .iframe {
-    min-height: 85vh;
+    min-height: 86vh;
   }
 }
 

@@ -1,6 +1,11 @@
 @import "/src/app/variables.module.scss";
 
-.bgDarkBlue {
+.test {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  
   background-color: $dark-blue;
 }
 

@@ -66,23 +66,23 @@ export default function Header({ categories }: props) {
 
   return (
     <>
-      <header className="fixed-top">
-        <div className="bg-light">
-          <Container className="d-flex align-items-center justify-content-between">
-            <Link href="/admin">
-              <Button className={styles.navBtn}>
-                Área do corretor
-              </Button>
-            </Link>
+      <div className="bg-light">
+        <Container className="d-flex align-items-center justify-content-between">
+          <Link href="/admin">
+            <Button className={styles.navBtn}>
+              Área do corretor
+            </Button>
+          </Link>
 
-            <Link href="tel:(47) 9 9759-4781">
-              <Button className={styles.navBtn}>
-                <Image src="/icons/whatsapp-icon.svg" alt="Ícone do whatsapp" width={15} height={15} className="me-2" />
-                (47) 9 99769-4781
-              </Button>
-            </Link>
-          </Container>
-        </div>
+          <Link href="tel:(47) 9 9759-4781">
+            <Button className={styles.navBtn}>
+              <Image src="/icons/whatsapp-icon.svg" alt="Ícone do whatsapp" width={15} height={15} className="me-2" />
+              (47) 9 99769-4781
+            </Button>
+          </Link>
+        </Container>
+      </div>
+      <header className={styles.test}>
         <Navbar expand="lg" className={styles.bgDarkBlue} >
           <Container>
             <Link href="/" className={`${styles.logo} navbar-brand`}>

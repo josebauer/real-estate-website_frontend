@@ -1,11 +1,11 @@
-import { Button, Container, FormSelect, Image } from "react-bootstrap";
+import { Button, Container, FormSelect } from "react-bootstrap";
 import styles from "./searchSection.module.scss";
 
 export default function SearchSection() {
   return (
     <>
       <section className={styles.searchSection}>
-        <Container className={`${styles.search} mx-2`}>
+        <Container className={`${styles.search} mx-2 shadow`}>
           <Container className={styles.formSelect}>
             <FormSelect id="negotiation" className={styles.select} aria-label="Selecionar tipo de negociação" >
               <option className={styles.selectOption}>Tipo de negociação</option>
