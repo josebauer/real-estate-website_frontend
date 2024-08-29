@@ -1,0 +1,47 @@
+@import "/src/app/variables.module.scss";
+
+.filterForm {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  width: 100%;
+  align-items: center;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.filterForm {
+
+  select,
+  input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: $dark-blue;
+
+    &:focus {
+      box-shadow: none;
+      border-color: $dark-blue;
+    }
+  }
+}
+
+.filterForm select option {
+  color: $dark-blue;
+}
+
+.button {
+  width: 100%;
+  padding: 10px;
+  background-color: $dark-blue;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $medium-blue;
+  }
+}

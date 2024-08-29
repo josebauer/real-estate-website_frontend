@@ -1,0 +1,25 @@
+@import "/src/app/variables.module.scss";
+
+.filteredRealEstateList {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.realEstateNotFound {
+  color: #000;
+  font-size: 1.125rem;
+}
+
+.clearFiltersBtn {
+  margin-bottom: 2rem;
+  padding: 10px 20px;
+  background-color: $dark-blue;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $medium-blue;
+  }
+}
