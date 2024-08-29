@@ -1,20 +1,20 @@
 import SearchSection from "../components/searchSection/SearchSection";
-import realEstateService, { NegotiationParams } from "../services/realEstateService";
+import realEstateService, { FilterParams } from "../services/realEstateService";
 import SlideSection from "../components/slideSection/SlideSection";
 
-const createNegotiationParams = (negotiation: string): NegotiationParams => {
+const createNegotiationParams = (negotiation: string): FilterParams => {
   return { negotiation }
 }
 
 export default async function Home() {
 
   const negotiationParamsSale = createNegotiationParams('venda')
-  const negotiationParamsRent = createNegotiationParams('locacao')
+  const negotiationParamsRent = createNegotiationParams('locação')
 
   const newestRealEstate = await realEstateService.getNewestRealEstate()
   const featuredRealEstate = await realEstateService.getFeaturedRealEstate()
-  const realEstateSale = await realEstateService.getRealEstateByNegotiation(negotiationParamsSale)
-  const realEstateRent = await realEstateService.getRealEstateByNegotiation(negotiationParamsRent)
+  const realEstateSale = await realEstateService.getFilteredRealEstate(negotiationParamsSale)
+  const realEstateRent = await realEstateService.getFilteredRealEstate(negotiationParamsRent)
 
   return (
     <>

@@ -20,10 +20,19 @@ export type RealEstateType = {
   featured: boolean
 }
 
-export interface NegotiationParams {
-  negotiation: string
-  realEstate?: RealEstateType
+export type FilterValues = {
+  city?: string
+  district?: string
+  categoryId?: string
+  negotiation?: string
+  bedrooms?: number
+  garages?: number
+  id?: number
+  page?: number
+  perPage?: number
 }
+
+export interface FilterParams extends Partial<FilterValues> { }
 
 const realEstateService = {
   getNewestRealEstate: async () => {
@@ -46,7 +55,7 @@ const realEstateService = {
     return res.data
   },
 
-  getRealEstateByNegotiation: async (params: NegotiationParams) => {
+  getFilteredRealEstate: async (params: FilterParams) => {
     const res = await api.get('/real-estate/filter', { params }).catch((error) => {
       console.log(error.response.data.message)
       
@@ -55,7 +64,7 @@ const realEstateService = {
     
     return res.data.realEstate
   },
-
+  
   getRealEstateById: async (id: number | string) => {
     const res = await api.get(`/real-estate/${id}`).catch((error) => {
       return error.response
