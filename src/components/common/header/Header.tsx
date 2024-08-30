@@ -13,11 +13,11 @@ import profileService from "@/services/profileService";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { CategoryType } from "@/services/categoriesService";
+import { FilterValues } from "@/services/realEstateService";
 
 interface props {
   categories: CategoryType[]
 }
-
 
 export default function Header({ categories }: props) {
   const [modalOpen, setModalOpen] = useState(false)
@@ -64,6 +64,19 @@ export default function Header({ categories }: props) {
     handleCloseModal
   } = useModal()
 
+  const handleFilterChange = async (categoryId: string, negotiation: string) => {
+    const filterParams: FilterValues = {
+      categoryId: categoryId,
+      negotiation: negotiation
+    }
+
+    localStorage.setItem('realEstateFilters', JSON.stringify(filterParams))
+
+    if (pathname === '/real-estate') {
+      location.reload()
+    }
+  }
+
   return (
     <>
       <div className="bg-light">
@@ -82,7 +95,7 @@ export default function Header({ categories }: props) {
           </Link>
         </Container>
       </div>
-      <header className={styles.test}>
+      <header className={styles.header}>
         <Navbar expand="lg" className={styles.bgDarkBlue} >
           <Container>
             <Link href="/" className={`${styles.logo} navbar-brand`}>
@@ -93,8 +106,13 @@ export default function Header({ categories }: props) {
               <Nav className="align-items-lg-center gap-2 gap-lg-5 mx-auto py-3">
                 <NavDropdown title="Venda" className={`${styles.dropdown} text-light`} id="dropdown-sale">
                   {Array.isArray(categories) && categories.map((category) => (
-                    <NavDropdown.Item as="div" className={styles.dropdownItem} key={category.id}>
-                      <Link href="/" className={styles.dropdownLink}>
+                    <NavDropdown.Item
+                      as="div"
+                      className={styles.dropdownItem}
+                      key={category.id}
+                      onClick={() => handleFilterChange(category.id.toString(), 'venda')}
+                    >
+                      <Link href="/real-estate" className={styles.dropdownLink}>
                         {category.name.replace(/(^\w{1})/, firstLetter => firstLetter.toUpperCase())}
                       </Link>
                     </NavDropdown.Item>
@@ -102,8 +120,13 @@ export default function Header({ categories }: props) {
                 </NavDropdown>
                 <NavDropdown title="Locação" className={`${styles.dropdown}`} id="dropdown-rent">
                   {Array.isArray(categories) && categories.map((category) => (
-                    <NavDropdown.Item as="div" className={styles.dropdownItem} key={category.id}>
-                      <Link href="/rent" className={styles.dropdownLink}>
+                    <NavDropdown.Item
+                      as="div"
+                      className={styles.dropdownItem}
+                      key={category.id}
+                      onClick={() => handleFilterChange(category.id.toString(), 'locação')}
+                    >
+                      <Link href="/real-estate" className={styles.dropdownLink}>
                         {category.name.replace(/(^\w{1})/, firstLetter => firstLetter.toUpperCase())}
                       </Link>
                     </NavDropdown.Item>
