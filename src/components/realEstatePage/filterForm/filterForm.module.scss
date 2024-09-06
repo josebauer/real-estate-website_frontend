@@ -2,7 +2,7 @@
 
 .filterForm {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr;
   gap: 1rem;
   width: 100%;
   align-items: center;
@@ -45,3 +45,16 @@
     background-color: $medium-blue;
   }
 }
+
+@media screen and (min-width: 480px) {
+  .filterForm {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .filterForm {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+

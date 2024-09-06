@@ -48,7 +48,7 @@ export default function RealEstate() {
 
   const clearFilters = () => {
     setFilters({ perPage: 12 })
-    fetchRealEstate({ perPage: 12 } )
+    fetchRealEstate({ perPage: 12 })
     localStorage.removeItem('realEstateFilters')
   }
 

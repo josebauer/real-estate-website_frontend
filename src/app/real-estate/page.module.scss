@@ -2,13 +2,15 @@
 
 .filteredRealEstateList {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 20px;
 }
 
 .realEstateNotFound {
   color: #000;
   font-size: 1.125rem;
+  width: 100%;
+  margin-top: 2rem;
 }
 
 .clearFiltersBtn {
@@ -18,8 +20,25 @@
   color: #fff;
   border: none;
   cursor: pointer;
+  align-self: center;
 
   &:hover {
     background-color: $medium-blue;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .filteredRealEstateList {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .clearFiltersBtn {
+    align-self: self-start;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .filteredRealEstateList {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
