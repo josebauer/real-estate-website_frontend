@@ -39,8 +39,8 @@ export default function Slide({ realEstate }: props) {
             width: slideCount * 430,
             gap: '1rem',
             pagination: false,
-            arrows: realEstate.length > 4 ? true : false,
-            drag: realEstate.length > 4 ? true : false,
+            arrows: realEstate.length > 3 ? true : false,
+            drag: realEstate.length > 3 ? true : false,
             breakpoints: {
               1400: {
                 width: slideWidth

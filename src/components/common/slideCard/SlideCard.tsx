@@ -13,6 +13,7 @@ export default function SlideCard({ realEstate }: props) {
       <Link href={`/real-estate/${realEstate.id}`} className="text-decoration-none">
         <div className={`${styles.slide} shadow-sm`}>
           <img src={`${process.env.NEXT_PUBLIC_BASEURL}/${realEstate.imagesUrl?.[0]}`} alt={realEstate.title} className={styles.slideImg} />
+          <p className={styles.id}># {realEstate.id}</p>
           <p className={styles.slideTitle}>{realEstate.title}</p>
           <p className={styles.location}>
             {realEstate.district} - {realEstate.city}/{realEstate.state.toUpperCase()}

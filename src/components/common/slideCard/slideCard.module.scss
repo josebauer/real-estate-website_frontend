@@ -3,6 +3,7 @@
 .slide {
   background-color: #FFF;
   border-radius: 20px;
+  position: relative;
 
   &:hover {
     cursor: pointer;
@@ -32,6 +33,18 @@
   border-radius: 20px 20px 0 0;
 }
 
+.id {
+  font-size: 1rem;
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #FFF;
+  padding: .75rem;
+  border-radius: 20px 0;
+  max-height: 250px;
+}
+
 .slideTitle {
   color: #000;
   font-weight: bold;
@@ -41,6 +54,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
 }
 
 .negotiation {
