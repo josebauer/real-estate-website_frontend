@@ -64,6 +64,14 @@ const realEstateService = {
     
     return res.data.realEstate
   },
+
+  getCities: async () => {
+    const res = await api.get('/real-estate/cities').catch((error) => {
+      return error.response
+    })
+
+    return res.data
+  },
   
   getRealEstateById: async (id: number | string) => {
     const res = await api.get(`/real-estate/${id}`).catch((error) => {

@@ -12,6 +12,7 @@ interface FilterFormProps {
 export default function FilterForm({ filters: initialFilters, onFilter }: FilterFormProps) {
   const [filters, setFilters] = useState<FilterValues>(initialFilters)
   const [categories, setCategories] = useState<CategoryType[]>([])
+  const [cities, setCities] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -20,6 +21,13 @@ export default function FilterForm({ filters: initialFilters, onFilter }: Filter
     }
 
     fetchCategories()
+
+    const fetchCities = async () => {
+      const fetchedCities = await realEstateService.getCities()
+      setCities(fetchedCities)
+    }
+
+    fetchCities()
   }, [])
 
 
@@ -48,8 +56,11 @@ export default function FilterForm({ filters: initialFilters, onFilter }: Filter
     <Form className={`${styles.filterForm} shadow`} onSubmit={handleSubmit}>
       <FormSelect name="city" value={filters.city || ''} onChange={handleInputChange}>
         <option value="">Cidade</option>
-        <option value="Canoinhas">Canoinhas</option>
-        <option value="Chapecó">Chapecó</option>
+        {cities.map((city) => (
+          <option value={city} key={city}>
+            {city}
+          </option>
+        ))}
       </FormSelect>
 
       <FormSelect name="district" value={filters.district || ''} onChange={handleInputChange}>
