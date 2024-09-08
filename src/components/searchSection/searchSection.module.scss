@@ -17,65 +17,12 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  
   margin: auto;
-  padding: 30px 20px;
-  border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.7);
 }
 
-.formSelect {
-  display: grid;
-  gap: 1rem;
-}
-
-.select {
-  padding: 10px;
-  font-weight: 500;
-
-  &:focus {
-    box-shadow: none;
-    border-color: transparent;
-  }
-
-  .selectOption {
-    color: #000; 
-    border-color: none;
-  }
-}
-
-.searchButton {
-  background-color: $dark-blue;
-  border-radius: 30px;
-  border: none;
-  padding: 0.75rem 2rem;
-  justify-self: center;
-
-  &:hover {
-    background-color: $medium-blue;
-  }
-}
-
-@media screen and (min-width: 576px) {
-  .formSelect {
-    grid-template-columns: 1fr 1fr;
-  }
-}
 
 @media screen and (min-width: 768px) {
   .searchSection {
     background-image: url('/background-large.jpg');
-    
   }
 }
-
-@media screen and (min-width: 1024px) {
-  .search {
-    flex-direction: row;
-  }
-
-  .formSelect {
-    display: flex;
-  }
-}
-
