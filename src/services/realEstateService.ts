@@ -58,10 +58,10 @@ const realEstateService = {
   getFilteredRealEstate: async (params: FilterParams) => {
     const res = await api.get('/real-estate/filter', { params }).catch((error) => {
       console.log(error.response.data.message)
-      
+
       return error.response
     })
-    
+
     return res.data.realEstate
   },
 
@@ -72,12 +72,22 @@ const realEstateService = {
 
     return res.data
   },
-  
+
+  getDistricts: async (city: string) => {
+    const res = await api.get('real-estate/districts', {
+      params: { city }
+    }).catch((error) => {
+      return error.response
+    })
+
+    return res.data
+  },
+
   getRealEstateById: async (id: number | string) => {
     const res = await api.get(`/real-estate/${id}`).catch((error) => {
       return error.response
     })
-  
+
     return res
   },
 }

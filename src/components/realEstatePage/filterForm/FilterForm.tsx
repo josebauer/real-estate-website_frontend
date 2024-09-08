@@ -12,7 +12,9 @@ interface FilterFormProps {
 export default function FilterForm({ filters: initialFilters, onFilter }: FilterFormProps) {
   const [filters, setFilters] = useState<FilterValues>(initialFilters)
   const [categories, setCategories] = useState<CategoryType[]>([])
-  const [cities, setCities] = useState<string[]>([]);
+  const [cities, setCities] = useState<string[]>([])
+  const [districts, setDistricts] = useState<string[]>([])
+  const [selectedCity, setSelectedCity] = useState<string | undefined>()
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -30,18 +32,40 @@ export default function FilterForm({ filters: initialFilters, onFilter }: Filter
     fetchCities()
   }, [])
 
+  useEffect(() => {
+    const fetchDistricts = async (city: string) => {
+      const fetchedDistricts = await realEstateService.getDistricts(city)
+      setDistricts(fetchedDistricts)
+    }
+
+    if (selectedCity) {
+      fetchDistricts(selectedCity)
+    } else {
+      setDistricts([])
+    }
+  }, [selectedCity])
 
   useEffect(() => {
     setFilters(initialFilters)
+    setSelectedCity(initialFilters.city || undefined)
   }, [initialFilters])
-
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target
-    setFilters({
-      ...filters,
-      [name]: value,
-    })
+
+    if (name === 'city') {
+      setSelectedCity(value || undefined)
+      setFilters({
+        ...filters,
+        [name]: value,
+        district: '', 
+      })
+    } else {
+      setFilters({
+        ...filters,
+        [name]: value,
+      })
+    }
   }
 
   const handleSubmit = async (e: FormEvent) => {
@@ -63,11 +87,18 @@ export default function FilterForm({ filters: initialFilters, onFilter }: Filter
         ))}
       </FormSelect>
 
-      <FormSelect name="district" value={filters.district || ''} onChange={handleInputChange}>
+      <FormSelect 
+        name="district" 
+        value={filters.district || ''} 
+        onChange={handleInputChange} 
+        disabled={!selectedCity}
+      >
         <option value="">Bairro</option>
-        <option value="Alto da Tijuca">Alto da Tijuca</option>
-        <option value="Efapi">Efapi</option>
-        <option value="Centro">Centro</option>
+        {districts.map((district) => (
+          <option value={district} key={district}>
+            {district}
+          </option>
+        ))}
       </FormSelect>
 
       <FormSelect name="categoryId" value={filters.categoryId || ''} onChange={handleInputChange}>
