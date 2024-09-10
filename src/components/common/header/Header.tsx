@@ -29,11 +29,15 @@ export default function Header({ categories }: props) {
   const pathname = usePathname()
 
   useEffect(() => {
-    profileService.fetchCurrent().then((user) => {
-      setFirstName(user.firstName)
-      setLastName(user.lastName)
-    })
-  })
+    if (isAuthenticated) {
+      profileService.fetchCurrent().then((user) => {
+        setFirstName(user.firstName)
+        setLastName(user.lastName)
+      }).catch(error => {
+        console.error('Erro ao buscar dados do usuário:', error)
+      })
+    }
+  }, [isAuthenticated])
 
   useEffect(() => {
     setModalOpen(false)
