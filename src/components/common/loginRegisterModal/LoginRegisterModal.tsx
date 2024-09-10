@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import { FormEvent, ChangeEvent, useEffect, useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import styles from "./loginRegisterModal.module.scss";
 import Image from 'next/image';
-import { FormEvent } from 'react';
 import authService from '@/services/authService';
 import ToastComponent from '../toast/Toast';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
+
 interface LoginRegisterModalProps {
   show: boolean
   handleClose: () => void
@@ -18,6 +18,8 @@ export default function LoginRegisterModal({ show, handleClose, initialMode }: L
   const [toastColor, setToastColor] = useState('')
   const [toastShow, setToastShow] = useState(false)
   const [toastMessage, setToastMessage] = useState('')
+  const [rememberMe, setRememberMe] = useState(false)
+
   const { login } = useAuth()
 
   useEffect(() => {
@@ -78,6 +80,10 @@ export default function LoginRegisterModal({ show, handleClose, initialMode }: L
 
   const router = useRouter()
 
+  const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setRememberMe(event.target.checked)
+  }
+
   const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
@@ -86,9 +92,15 @@ export default function LoginRegisterModal({ show, handleClose, initialMode }: L
     const password = formData.get("password")!.toString()
     const params = { email, password }
 
-    const { status } = await authService.login(params)
+    const { status, data } = await authService.login(params)
 
     if (status === 200) {
+      if (rememberMe) {
+        localStorage.setItem('realEstate-token', data.token)
+      } else {
+        sessionStorage.setItem('realEstate-token', data.token)
+      }
+
       setToastColor('bg-success')
       setToastShow(true)
       setTimeout(() => {
@@ -98,6 +110,7 @@ export default function LoginRegisterModal({ show, handleClose, initialMode }: L
         router.push('/')
       }, 1000)
       setToastMessage('Login realizado com sucesso!')
+
     } else {
       setToastColor('bg-danger')
       setToastShow(true)
@@ -167,7 +180,13 @@ export default function LoginRegisterModal({ show, handleClose, initialMode }: L
               )}
             </div>
             <Form.Group className='mt-3'>
-              <Form.Check className={styles.textSmall} id="remember" label="Lembrar meus dados" />
+              <Form.Check 
+                className={styles.textSmall} 
+                id="remember" 
+                label="Lembrar meus dados" 
+                checked={rememberMe}
+                onChange={handleCheckboxChange}
+              />
             </Form.Group>
             <ToastComponent color={toastColor} show={toastShow} message={toastMessage} />
             <Button className={styles.button} type="submit" variant="primary" >

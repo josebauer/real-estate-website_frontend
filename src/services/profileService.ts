@@ -14,7 +14,7 @@ interface PasswordParams {
 
 const profileService = {
   fetchCurrent: async () => {
-    const token = sessionStorage.getItem("realEstate-token")
+    const token = localStorage.getItem('realEstate-token') || sessionStorage.getItem('realEstate-token')
 
     const res = await api.get('/users/current', {
       headers: {
@@ -28,7 +28,7 @@ const profileService = {
   },
 
   userUpdate: async (params: UserParams) => {
-    const token = sessionStorage.getItem("realEstate-token")
+    const token = localStorage.getItem('realEstate-token') || sessionStorage.getItem('realEstate-token')
 
     const res = await api.put('/users/current', params, {
       headers: {
@@ -44,7 +44,7 @@ const profileService = {
   },
 
   passwordUpdate: async (params: PasswordParams) => {
-    const token = sessionStorage.getItem("realEstate-token")
+    const token = localStorage.getItem('realEstate-token') || sessionStorage.getItem('realEstate-token')
 
     const res = await api.put('/users/current/password', params, {
       headers: {

@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const token = sessionStorage.getItem('realEstate-token');
+    const token = localStorage.getItem('realEstate-token') || sessionStorage.getItem('realEstate-token');
     setIsAuthenticated(token !== null);
   }, []);
 
@@ -23,7 +23,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logout = () => {
-    sessionStorage.clear();
+    localStorage.removeItem('realEstate-token');
+    sessionStorage.removeItem('realEstate-token');
     setIsAuthenticated(false);
   };
 
