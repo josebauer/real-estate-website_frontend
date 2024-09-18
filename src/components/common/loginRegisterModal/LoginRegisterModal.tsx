@@ -6,6 +6,7 @@ import authService from '@/services/authService';
 import ToastComponent from '../toast/Toast';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
+import ForgotPasswordModal from '../forgotPasswordModal/ForgotPasswordModal';
 
 interface LoginRegisterModalProps {
   show: boolean
@@ -19,6 +20,12 @@ export default function LoginRegisterModal({ show, handleClose, initialMode }: L
   const [toastShow, setToastShow] = useState(false)
   const [toastMessage, setToastMessage] = useState('')
   const [rememberMe, setRememberMe] = useState(false)
+  const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false)
+
+  const handleForgotPasswordClick = () => {
+    setShowForgotPasswordModal(true)
+    handleClose()
+  }
 
   const { login } = useAuth()
 
@@ -171,7 +178,14 @@ export default function LoginRegisterModal({ show, handleClose, initialMode }: L
                 <Form.Label htmlFor='password' className={styles.textSmall}>Senha</Form.Label>
                 <Form.Control name='password' id='password' type="password" className={styles.input} placeholder="Digite sua senha" required />
               </Form.Group>
-              {isLogin && (<Button className={`${styles.linkButton} align-self-end`} variant='link'>Esqueci minha senha</Button>)}
+              {isLogin && (
+                <Button 
+                  className={`${styles.linkButton} align-self-end`} 
+                  variant='link' 
+                  onClick={handleForgotPasswordClick}
+                >
+                  Esqueci minha senha
+                </Button>)}
               {!isLogin && (
                 <Form.Group>
                   <Form.Label htmlFor='repeatPassword' className={styles.textSmall}>Repetir Senha</Form.Label>
@@ -203,6 +217,10 @@ export default function LoginRegisterModal({ show, handleClose, initialMode }: L
           </div>
         </Modal.Footer>
       </Modal>
+      <ForgotPasswordModal
+        show={showForgotPasswordModal}
+        handleClose={() => setShowForgotPasswordModal(false)}
+      />
     </>
 
   );
