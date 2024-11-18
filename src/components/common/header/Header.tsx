@@ -85,7 +85,7 @@ export default function Header({ categories }: props) {
     <>
       <div className="bg-light">
         <Container className="d-flex align-items-center justify-content-between">
-          <Link href="/admin">
+          <Link href="http://localhost:3000/admin">
             <Button className={styles.navBtn}>
               Área do corretor
             </Button>

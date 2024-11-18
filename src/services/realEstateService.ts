@@ -37,8 +37,6 @@ export interface FilterParams extends Partial<FilterValues> { }
 const realEstateService = {
   getNewestRealEstate: async () => {
     const res = await api.get('/real-estate/newest').catch((error) => {
-      console.log(error.response.data.message)
-
       return error.response
     })
 
@@ -47,8 +45,6 @@ const realEstateService = {
 
   getFeaturedRealEstate: async () => {
     const res = await api.get('/real-estate/featured').catch((error) => {
-      console.log(error.response.data.message)
-
       return error.response
     })
 
@@ -57,8 +53,6 @@ const realEstateService = {
 
   getFilteredRealEstate: async (params: FilterParams) => {
     const res = await api.get('/real-estate/filter', { params }).catch((error) => {
-      console.log(error.response.data.message)
-
       return error.response
     })
 
@@ -90,6 +84,47 @@ const realEstateService = {
 
     return res
   },
+
+  addToFav: async (realEstateId: number | string) => {
+    const token = sessionStorage.getItem('realEstate-token')
+
+    const res = await api.post("/favorites", {realEstateId}, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).catch((error) => {
+      return error.response
+    })
+
+    return res
+  },
+
+  removeFav: async (realEstateId: number | string) => {
+    const token = sessionStorage.getItem('realEstate-token')
+
+    const res = await api.delete("/favorites", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      data: { realEstateId }
+    }).catch((error) => {
+      return error.response
+    })
+
+    return res
+  },
+
+  getFav: async () => {
+    const token = sessionStorage.getItem('realEstate-token')
+
+    const res = await api.get("/favorites", {
+      headers: { Authorization: `Bearer ${token}` }
+    }).catch((error) => {
+      return error.response
+    })
+
+    return res.data
+  }
 }
 
 export default realEstateService
