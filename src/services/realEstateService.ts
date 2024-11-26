@@ -17,7 +17,8 @@ export type RealEstateType = {
   suites: number
   garages: number
   imagesUrl: Array<String>
-  featured: boolean
+  featured: boolean,
+  favorited: boolean
 }
 
 export type FilterValues = {
@@ -86,9 +87,9 @@ const realEstateService = {
   },
 
   addToFav: async (realEstateId: number | string) => {
-    const token = sessionStorage.getItem('realEstate-token')
+    const token = localStorage.getItem('realEstate-token') || sessionStorage.getItem('realEstate-token')
 
-    const res = await api.post("/favorites", {realEstateId}, {
+    const res = await api.post("/favorites", { realEstateId }, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -100,13 +101,12 @@ const realEstateService = {
   },
 
   removeFav: async (realEstateId: number | string) => {
-    const token = sessionStorage.getItem('realEstate-token')
+    const token = localStorage.getItem('realEstate-token') || sessionStorage.getItem('realEstate-token')
 
-    const res = await api.delete("/favorites", {
+    const res = await api.delete(`/favorites/${realEstateId}`, {
       headers: {
         Authorization: `Bearer ${token}`
-      },
-      data: { realEstateId }
+      }
     }).catch((error) => {
       return error.response
     })
@@ -115,7 +115,7 @@ const realEstateService = {
   },
 
   getFav: async () => {
-    const token = sessionStorage.getItem('realEstate-token')
+    const token = localStorage.getItem('realEstate-token') || sessionStorage.getItem('realEstate-token')
 
     const res = await api.get("/favorites", {
       headers: { Authorization: `Bearer ${token}` }
@@ -124,7 +124,19 @@ const realEstateService = {
     })
 
     return res.data
-  }
+  },
+
+  getFavStatus: async (realEstateId: number | string) => {
+    const token = localStorage.getItem('realEstate-token') || sessionStorage.getItem('realEstate-token');
+  
+    const res = await api.get(`/favorites/status/${realEstateId}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    }).catch((error) => {
+      return error.response;
+    });
+  
+    return res.data.favorited;
+  },
 }
 
 export default realEstateService
