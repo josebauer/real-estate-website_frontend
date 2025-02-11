@@ -48,9 +48,30 @@ export default function RealEstate({ params }: { params: { id: string } }) {
       handleShowModal("login");
       return;
     }
-  
+
     await toggleFavorite();
   }
+
+  const handleShare = async () => {
+    if (!realEstate) return;
+
+    const url = `${window.location.origin}/real-estate/${id}`;
+
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: realEstate.title,
+          text: "Confira este imóvel incrível!",
+          url: url,
+        });
+      } else {
+        await navigator.clipboard.writeText(url);
+        alert("Link copiado para a área de transferência!");
+      }
+    } catch (error) {
+      console.error("Erro ao compartilhar:", error);
+    }
+  };
 
   return (
     <>
@@ -106,7 +127,14 @@ export default function RealEstate({ params }: { params: { id: string } }) {
                 className={styles.star}
                 onClick={handleToggleFavorite}
               />
-              <Image className={styles.share} src="/icons/cardIcons/share.svg" width={34} height={34} alt="Ícone para compartilhar" />
+              <Image
+                className={styles.share}
+                src="/icons/cardIcons/share.svg"
+                width={34}
+                height={34}
+                alt="Ícone para compartilhar"
+                onClick={handleShare}
+              />
             </div>
           </div>
         </div>
