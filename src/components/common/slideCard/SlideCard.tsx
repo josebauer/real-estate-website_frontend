@@ -1,66 +1,44 @@
 import Image from "next/image";
 import styles from "./slideCard.module.scss";
-import realEstateService, { RealEstateType } from "@/services/realEstateService";
+import { RealEstateType } from "@/services/realEstateService";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useModal } from "@/hooks/useModal";
 import LoginRegisterModal from "../loginRegisterModal/LoginRegisterModal";
+import { useFavorite } from "@/hooks/useFavorite";
 
-interface props {
+interface Props {
   realEstate: RealEstateType;
   onRemoveFavorite?: (id: number) => void;
 }
 
-export default function SlideCard({ realEstate, onRemoveFavorite }: props) {
-  const [isFavorited, setIsFavorited] = useState(realEstate.favorited)
-  const [error, setError] = useState<string | null>(null)
+export default function SlideCard({ realEstate, onRemoveFavorite }: Props) {
+  const { isAuthenticated } = useAuth();
+  const {
+    showModal,
+    initialMode,
+    handleShowModal,
+    handleCloseModal,
+  } = useModal();
 
-  const { isAuthenticated } = useAuth()
-  const { 
-    showModal, 
-    initialMode, 
-    handleShowModal, 
-    handleCloseModal 
-  } = useModal()
-
-  useEffect(() => {
-    const fetchFavoriteStatus = async () => {
-      if (isAuthenticated) {
-        try {
-          const favorited = await realEstateService.getFavStatus(realEstate.id)
-          setIsFavorited(favorited)
-        } catch (err) {
-          console.error("Erro ao buscar status de favorito:", err)
-        }
-      }
-    }
-    fetchFavoriteStatus()
-  }, [realEstate.id, isAuthenticated])
+  const { isFavorited, toggleFavorite, error } = useFavorite(
+    realEstate.favorited,
+    realEstate.id,
+    isAuthenticated
+  );
 
   const handleToggleFavorite = async (e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault()
-    setError(null)
-
+    e.preventDefault();
     if (!isAuthenticated) {
-      handleShowModal("login")
-      return
+      handleShowModal("login");
+      return;
     }
-
-    try {
-      if (isFavorited) {
-        await realEstateService.removeFav(realEstate.id)
-        setIsFavorited(false)
-
-        if (onRemoveFavorite) {
-          onRemoveFavorite(realEstate.id)
-        }
-      } else {
-        await realEstateService.addToFav(realEstate.id)
-        setIsFavorited(true)
-      }
-    } catch (err) {
-      setError("Erro ao processar o pedido.")
+  
+    const wasFavorited = isFavorited;
+    await toggleFavorite();
+  
+    if (wasFavorited && onRemoveFavorite) {
+      onRemoveFavorite(realEstate.id);
     }
   };
 

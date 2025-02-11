@@ -6,24 +6,34 @@ import { useEffect, useState } from "react";
 import { Button, Container } from "react-bootstrap";
 import Image from "next/image";
 import SlideThumbnail from "@/components/common/slideThumbnail/SlideThumbnail";
+import { useAuth } from "@/contexts/AuthContext";
+import { useFavorite } from "@/hooks/useFavorite";
 
 export default function RealEstate({ params }: { params: { id: string } }) {
-  const [realEstate, setRealEstate] = useState<RealEstateType | null>(null)
-  const { id } = params
+  const [realEstate, setRealEstate] = useState<RealEstateType | null>(null);
+  const { id } = params;
+  const { isAuthenticated } = useAuth();
 
-  const getRealEstate = async function () {
-    if (!id) return
+  const { isFavorited, toggleFavorite, error } = useFavorite(
+    realEstate?.favorited || false,
+    parseInt(id, 10),
+    isAuthenticated
+  );
 
-    const res = await realEstateService.getRealEstateById(id)
+  const getRealEstate = async () => {
+    if (!id) return;
+
+    const res = await realEstateService.getRealEstateById(id);
 
     if (res.status === 200) {
-      setRealEstate(res.data)
+      setRealEstate(res.data);
     }
-  }
+  };
 
   useEffect(() => {
-    getRealEstate()
-  }, [id])
+    getRealEstate();
+  }, [id]);
+
 
   return (
     <>
@@ -68,7 +78,17 @@ export default function RealEstate({ params }: { params: { id: string } }) {
             </div>
             <div className={styles.buttons}>
               <Button className={styles.button}>Agendar visita</Button>
-              <Image className={styles.star} src="/icons/cardIcons/star.svg" width={34} height={34} alt="Estrela para favoritar o imóvel" />
+              <Image                src={
+                  isFavorited
+                    ? "/icons/cardIcons/starFavorited.svg"
+                    : "/icons/cardIcons/star.svg"
+                }
+                width={34}
+                height={34}
+                alt="Favorito"
+                className={styles.star}
+                onClick={toggleFavorite}
+              />
               <Image className={styles.share} src="/icons/cardIcons/share.svg" width={34} height={34} alt="Ícone para compartilhar" />
             </div>
           </div>
