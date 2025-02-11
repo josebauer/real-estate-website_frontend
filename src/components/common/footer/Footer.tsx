@@ -142,7 +142,7 @@ export default function Footer({ categories }: props) {
               </Link>
             </div>
           </div>
-          <p className={styles.copyright}>Desenvolvido por José Henrique Bauer &copy; 2024 Todos os direitos reservados</p>
+          <p className={styles.copyright}>Desenvolvido por José Henrique Bauer &copy; {new Date().getFullYear()} Todos os direitos reservados</p>
         </Container>
       </footer>
       <LoginRegisterModal show={showModal} handleClose={handleCloseModal} initialMode={initialMode} />

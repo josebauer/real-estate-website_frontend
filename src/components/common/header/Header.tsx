@@ -43,6 +43,17 @@ export default function Header({ categories }: props) {
     setModalOpen(false)
   }, [pathname])
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 18); 
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const handleOpenReactModal = () => {
     setModalOpen(true)
   }
@@ -91,10 +102,10 @@ export default function Header({ categories }: props) {
             </Button>
           </Link>
 
-          <Link href="tel:(47) 9 9759-4781">
+          <Link href="tel:(47) 9 9999-9999">
             <Button className={styles.navBtn}>
               <Image src="/icons/whatsapp-icon.svg" alt="Ícone do whatsapp" width={15} height={15} className="me-2" />
-              (47) 9 99769-4781
+              (47) 9 9999-9999
             </Button>
           </Link>
         </Container>
@@ -160,8 +171,9 @@ export default function Header({ categories }: props) {
               onRequestClose={handleCloseReactModal}
               shouldCloseOnEsc={true}
               className={styles.reactModal}
-              overlayClassName={styles.overlayModal}
+              overlayClassName={`${styles.overlayModal} ${isScrolled ? styles.scrolledOverlay : ""}`}
               ariaHideApp={false}
+              parentSelector={() => document.querySelector(`.${styles.header}`) || document.body}
             >
               <Link className="text-decoration-none" onClick={handleCloseReactModal} href="/profile">
                 <p className={styles.modalLink}>Meus dados</p>
