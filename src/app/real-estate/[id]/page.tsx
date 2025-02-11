@@ -8,11 +8,19 @@ import Image from "next/image";
 import SlideThumbnail from "@/components/common/slideThumbnail/SlideThumbnail";
 import { useAuth } from "@/contexts/AuthContext";
 import { useFavorite } from "@/hooks/useFavorite";
+import { useModal } from "@/hooks/useModal";
+import LoginRegisterModal from "@/components/common/loginRegisterModal/LoginRegisterModal";
 
 export default function RealEstate({ params }: { params: { id: string } }) {
   const [realEstate, setRealEstate] = useState<RealEstateType | null>(null);
   const { id } = params;
   const { isAuthenticated } = useAuth();
+  const {
+    showModal,
+    initialMode,
+    handleShowModal,
+    handleCloseModal,
+  } = useModal();
 
   const { isFavorited, toggleFavorite, error } = useFavorite(
     realEstate?.favorited || false,
@@ -34,6 +42,15 @@ export default function RealEstate({ params }: { params: { id: string } }) {
     getRealEstate();
   }, [id]);
 
+  const handleToggleFavorite = async (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    if (!isAuthenticated) {
+      handleShowModal("login");
+      return;
+    }
+  
+    await toggleFavorite();
+  }
 
   return (
     <>
@@ -78,16 +95,16 @@ export default function RealEstate({ params }: { params: { id: string } }) {
             </div>
             <div className={styles.buttons}>
               <Button className={styles.button}>Agendar visita</Button>
-              <Image                src={
-                  isFavorited
-                    ? "/icons/cardIcons/starFavorited.svg"
-                    : "/icons/cardIcons/star.svg"
-                }
+              <Image src={
+                isFavorited
+                  ? "/icons/cardIcons/starFavorited.svg"
+                  : "/icons/cardIcons/star.svg"
+              }
                 width={34}
                 height={34}
                 alt="Favorito"
                 className={styles.star}
-                onClick={toggleFavorite}
+                onClick={handleToggleFavorite}
               />
               <Image className={styles.share} src="/icons/cardIcons/share.svg" width={34} height={34} alt="Ícone para compartilhar" />
             </div>
@@ -107,6 +124,7 @@ export default function RealEstate({ params }: { params: { id: string } }) {
           </div>
         </div>
       </Container>
+      <LoginRegisterModal show={showModal} handleClose={handleCloseModal} initialMode={initialMode} />
     </>
   )
 }
