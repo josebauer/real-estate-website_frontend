@@ -10,8 +10,10 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useFavorite } from "@/hooks/useFavorite";
 import { useModal } from "@/hooks/useModal";
 import LoginRegisterModal from "@/components/common/loginRegisterModal/LoginRegisterModal";
+import ScheduleModal from "@/components/common/scheduleModal/ScheduleModal";
 
 export default function RealEstate({ params }: { params: { id: string } }) {
+  const [scheduleModalOpen, setScheduleModalOpen] = useState(false)
   const [realEstate, setRealEstate] = useState<RealEstateType | null>(null);
   const { id } = params;
   const { isAuthenticated } = useAuth();
@@ -72,6 +74,20 @@ export default function RealEstate({ params }: { params: { id: string } }) {
       console.error("Erro ao compartilhar:", error);
     }
   };
+  
+  const handleOpenScheduleModal = () => {
+    if (!isAuthenticated) {
+      handleShowModal("login")
+      return
+    }
+    
+    setScheduleModalOpen(true)
+  }
+
+  const handleCloseScheduleModal = () => {
+    setScheduleModalOpen(false)
+  }
+
 
   return (
     <>
@@ -115,7 +131,7 @@ export default function RealEstate({ params }: { params: { id: string } }) {
               </div>
             </div>
             <div className={styles.buttons}>
-              <Button className={styles.button}>Agendar visita</Button>
+              <Button className={styles.button} onClick={handleOpenScheduleModal}>Agendar visita</Button>
               <Image src={
                 isFavorited
                   ? "/icons/cardIcons/starFavorited.svg"
@@ -153,6 +169,7 @@ export default function RealEstate({ params }: { params: { id: string } }) {
         </div>
       </Container>
       <LoginRegisterModal show={showModal} handleClose={handleCloseModal} initialMode={initialMode} />
+      <ScheduleModal show={scheduleModalOpen} handleClose={handleCloseScheduleModal} realEstateId={+id} />
     </>
   )
 }
