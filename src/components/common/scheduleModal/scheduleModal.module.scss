@@ -1,0 +1,31 @@
+@import "/src/app/variables.module.scss";
+
+.modal {
+
+  .modalHeader {
+    display: block;
+    text-align: center;
+  }
+
+  .modalTitle {
+    padding: 1rem;
+    font-size: 1.25rem;
+  }
+
+  .modalHeader,
+  .modalBody,
+  .modalFooter {
+    background-color: $dark-blue;
+  }
+
+  .modalFooter {
+    border: none;
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
