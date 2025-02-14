@@ -1,0 +1,43 @@
+.title {
+  color: #000;
+  font-weight: bold;
+  font-size: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  align-self: flex-start;
+}
+
+.schedulesNotFound {
+  color: #000;
+  font-size: 1.125rem;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.schedules {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.scheduleCard {
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+.realEstateImage {
+  height: 200px;
+  object-fit: cover;
+}
+
+.status {
+  color: #000;
+}
