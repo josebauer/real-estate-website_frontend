@@ -1,7 +1,3 @@
-'use client'
-
-import { useEffect } from "react";
-import { Button, Container, Form } from "react-bootstrap";
 import styles from "./page.module.scss";
 import Image from "next/image";
 import Link from "next/link";
@@ -39,31 +35,6 @@ export default function Contact() {
               </li>
             </ul>
           </div>
-
-          <Container className="py-4">
-            <Form className={`${styles.form} shadow`}>
-              <p className={`${styles.title} text-center mb-4`}>Mande uma mensagem!</p>
-              <Form.Group className="mb-3">
-                <Form.Label className={styles.label}>Nome</Form.Label>
-                <Form.Control className={styles.input} type="text" placeholder="Digite seu nome" required />
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label className={styles.label}>Email</Form.Label>
-                <Form.Control className={styles.input} type="text" placeholder="Digite seu email" required />
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label className={styles.label}>Assunto</Form.Label>
-                <Form.Control className={styles.input} type="text" placeholder="Digite o assunto" required />
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label className={styles.label}>Mensagem</Form.Label>
-                <Form.Control className={styles.input} as="textarea" rows={5} placeholder="Digite sua mensagem" required />
-              </Form.Group>
-              <Button className={styles.button} type="submit">
-                Enviar
-              </Button>
-            </Form>
-          </Container>
         </section>
       </main>
     </>
