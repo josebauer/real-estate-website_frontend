@@ -89,7 +89,7 @@ export default function ScheduleModal({ show, handleClose, realEstateId }: Forgo
             </Form.Group>
             <ToastComponent color={toastColor} show={toastShow} message={toastMessage} />
             <div className={styles.buttons}>
-              <Button variant="success" type="submit" >Confirmar Agendamento</Button>
+              <Button variant="success" type="submit" >Realizar Agendamento</Button>
               <Button variant="danger" onClick={handleClose}>Cancelar</Button>
             </div>
           </Form>

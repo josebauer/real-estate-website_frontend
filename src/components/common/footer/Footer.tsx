@@ -7,8 +7,9 @@ import Link from "next/link";
 import LoginRegisterModal from "../loginRegisterModal/LoginRegisterModal";
 import { useModal } from "@/hooks/useModal";
 import { useAuth } from "@/contexts/AuthContext";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { CategoryType } from "@/services/categoriesService";
+import { FilterValues } from "@/services/realEstateService";
 
 interface props {
   categories: CategoryType[]
@@ -18,6 +19,7 @@ export default function Footer({ categories }: props) {
   const { isAuthenticated, logout } = useAuth()
 
   const router = useRouter()
+  const pathname = usePathname()
 
   const handleLogout = () => {
     logout()
@@ -31,6 +33,19 @@ export default function Footer({ categories }: props) {
     handleCloseModal
   } = useModal()
 
+  const handleFilterChange = async (categoryId: string, negotiation: string) => {
+      const filterParams: FilterValues = {
+        categoryId: categoryId,
+        negotiation: negotiation
+      }
+  
+      localStorage.setItem('realEstateFilters', JSON.stringify(filterParams))
+  
+      if (pathname === '/real-estate') {
+        location.reload()
+      }
+    }
+  
   return (
     <>
       <footer className={styles.footer}>
@@ -40,7 +55,11 @@ export default function Footer({ categories }: props) {
               <p className={styles.listTitle}>Venda</p>
               <ul className={styles.list}>
                 {Array.isArray(categories) && categories.map((category) => (
-                  <li key={category.id}>{category.name.replace(/(^\w{1})/, firstLetter => firstLetter.toUpperCase())}</li>
+                  <li key={category.id}>
+                    <Link href='/real-estate' className={styles.link}  onClick={() => handleFilterChange(category.id.toString(), 'venda')}>
+                      {category.name.replace(/(^\w{1})/, firstLetter => firstLetter.toUpperCase())}
+                    </Link>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -48,7 +67,11 @@ export default function Footer({ categories }: props) {
               <p className={styles.listTitle}>Locação</p>
               <ul className={styles.list}>
                 {Array.isArray(categories) && categories.map((category) => (
-                  <li key={category.id}>{category.name.replace(/(^\w{1})/, firstLetter => firstLetter.toUpperCase())}</li>
+                  <li key={category.id}>
+                    <Link href='/real-estate' className={styles.link} onClick={() => handleFilterChange(category.id.toString(), 'locação')}>
+                      {category.name.replace(/(^\w{1})/, firstLetter => firstLetter.toUpperCase())}
+                    </Link>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -148,4 +171,5 @@ export default function Footer({ categories }: props) {
       <LoginRegisterModal show={showModal} handleClose={handleCloseModal} initialMode={initialMode} />
     </>
   )
+
 }
