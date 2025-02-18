@@ -3,7 +3,8 @@ import api from "./api";
 export type RealEstateType = {
   id: number
   title: string
-  price: number
+  price: string
+  condominium: string
   negotiation: string
   description: string
   zipCode: number

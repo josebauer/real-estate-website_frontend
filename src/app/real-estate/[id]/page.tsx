@@ -74,13 +74,13 @@ export default function RealEstate({ params }: { params: { id: string } }) {
       console.error("Erro ao compartilhar:", error);
     }
   };
-  
+
   const handleOpenScheduleModal = () => {
     if (!isAuthenticated) {
       handleShowModal("login")
       return
     }
-    
+
     setScheduleModalOpen(true)
   }
 
@@ -104,9 +104,14 @@ export default function RealEstate({ params }: { params: { id: string } }) {
               <p className={styles.cardTitle}>{realEstate?.title} #{realEstate?.id}</p>
               <p className={styles.location}>{realEstate?.district} - {realEstate?.city}/{realEstate?.state.toUpperCase()}</p>
               <div className="mt-4 mt-xl-5 d-flex align-items-center justify-content-between gap-xl-5">
-                <p className={styles.price}>{!realEstate?.price ? 'R$ A CONSULTAR' : `${realEstate?.price}`}</p>
+                <p className={styles.price}>
+                  {!realEstate?.price ? 'R$ A CONSULTAR' : `${realEstate?.price}`}
+                </p>
                 <p className={styles.negotiation}>{realEstate?.negotiation}</p>
               </div>
+              <p className={styles.condominium}>
+                {realEstate?.condominium ? `Condomínio: +${realEstate?.condominium}` : ''}
+              </p>
               <div className="my-4 my-xl-5 d-flex flex-column gap-2">
                 <div className="d-flex py-1 align-items-center gap-3">
                   <Image src={"/icons/cardIcons/bedroomIcon.svg"} width={35} height={33} alt="Ícone de cama" />
