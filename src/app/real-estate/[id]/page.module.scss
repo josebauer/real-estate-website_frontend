@@ -1,5 +1,20 @@
 @import "/src/app/variables.module.scss";
 
+.imageNotFound {
+  background-color: $dark-blue;
+  height: 300px;
+  width: 100%;
+  border-radius: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    color: #FFF;
+  }
+}
+
 .realEstateCard {
   display: flex;
   flex-direction: column;
@@ -139,6 +154,10 @@
 }
 
 @media screen and (min-width: 768px) {
+  .imageNotFound {
+    height: 400px;
+  }
+
   .cardTitle {
     font-size: 1.75rem;
   }
@@ -156,6 +175,10 @@
 
 
 @media screen and (min-width: 992px) {
+  .imageNotFound {
+    height: 350px;
+  }
+
   .cardDesc {
     .descBox {
       border-bottom: none;
@@ -171,6 +194,9 @@
 }
 
 @media screen and (min-width: 1200px) {
+  .imageNotFound {
+    height: 400px;
+  }
 
   .cardDesc {
     .descBox {

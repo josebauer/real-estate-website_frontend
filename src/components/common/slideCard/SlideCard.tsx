@@ -33,10 +33,10 @@ export default function SlideCard({ realEstate, onRemoveFavorite }: Props) {
       handleShowModal("login");
       return;
     }
-  
+
     const wasFavorited = isFavorited;
     await toggleFavorite();
-  
+
     if (wasFavorited && onRemoveFavorite) {
       onRemoveFavorite(realEstate.id);
     }
@@ -47,11 +47,22 @@ export default function SlideCard({ realEstate, onRemoveFavorite }: Props) {
       <Link href={`/real-estate/${realEstate.id}`} className="text-decoration-none">
         <div className={`${styles.slide} shadow-sm`}>
           <div className={styles.test}>
-            <img
-              src={`${process.env.NEXT_PUBLIC_BASEURL}/${realEstate.imagesUrl?.[0]}`}
-              alt={realEstate.title}
-              className={styles.slideImg}
-            />
+            {realEstate?.imagesUrl && realEstate.imagesUrl.length > 0 ? (
+              <img
+                src={`${process.env.NEXT_PUBLIC_BASEURL}/${realEstate.imagesUrl?.[0]}`}
+                alt={realEstate.title}
+                className={styles.slideImg}
+              />
+
+            ) : (
+              <div className={styles.imageNotFound}>
+                <p>
+                  NÃO HÁ IMAGENS
+                  <br />
+                  DISPONÍVEIS DESSE IMÓVEL.
+                </p>
+              </div>
+            )}
             <p className={styles.id}># {realEstate.id}</p>
             <div className={`${styles.favorite} shadow`}>
               <Image

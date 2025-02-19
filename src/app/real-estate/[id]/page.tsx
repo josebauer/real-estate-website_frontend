@@ -97,7 +97,13 @@ export default function RealEstate({ params }: { params: { id: string } }) {
           {realEstate?.imagesUrl && realEstate.imagesUrl.length > 0 && realEstate?.title ? (
             <SlideThumbnail imagesUrl={realEstate.imagesUrl} title={realEstate.title} />
           ) : (
-            <p>No images available</p>
+            <div className={styles.imageNotFound}>
+              <p>
+                NÃO HÁ IMAGENS
+                <br />
+                DISPONÍVEIS DESSE IMÓVEL.
+              </p>
+            </div>
           )}
           <div className={styles.realEstateInfos}>
             <div>
