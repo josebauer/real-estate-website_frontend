@@ -57,9 +57,14 @@ const realEstateService = {
     const res = await api.get('/real-estate/filter', { params }).catch((error) => {
       return error.response
     })
-
-    return res.data.realEstate
-  },
+  
+    return {
+      realEstate: res.data.realEstate,
+      total: res.data.total,
+      page: res.data.page,
+      perPage: res.data.perPage,
+    }
+  },  
 
   getCities: async () => {
     const res = await api.get('/real-estate/cities').catch((error) => {

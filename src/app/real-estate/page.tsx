@@ -3,6 +3,7 @@
 import styles from "./page.module.scss"
 import SlideCard from "@/components/common/slideCard/SlideCard";
 import FilterForm from "@/components/realEstatePage/filterForm/FilterForm";
+import PaginationComponent from "@/components/realEstatePage/pagination/PaginationComponent";
 import realEstateService, { FilterValues, RealEstateType } from "@/services/realEstateService";
 import { useEffect, useState } from "react";
 import { Button, Container } from "react-bootstrap";
@@ -10,45 +11,65 @@ import { Button, Container } from "react-bootstrap";
 export default function RealEstate() {
   const [filteredRealEstate, setFilteredRealEstate] = useState<RealEstateType[]>([])
   const [filters, setFilters] = useState<FilterValues>({})
-  
+  const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const savedFilters = localStorage.getItem('realEstateFilters')
       if (savedFilters) {
         const parsedFilters = JSON.parse(savedFilters)
         setFilters(parsedFilters)
-        fetchRealEstate(parsedFilters)
+        fetchRealEstate(parsedFilters, 1)
       } else {
-        fetchRealEstate()
+        fetchRealEstate({}, 1)
       }
     }
   }, [])
 
-  const fetchRealEstate = async (appliedFilters: FilterValues = { perPage: 12 }) => {
+  const handlePageChange = (newPage: number) => {
+    if (newPage !== page) {
+      setPage(newPage);
+      fetchRealEstate(filters, newPage);
+    }
+  }
+
+  const fetchRealEstate = async (appliedFilters: FilterValues = {}, newPage: number = 1) => {
     try {
-      const results = await realEstateService.getFilteredRealEstate(appliedFilters)
-      setFilteredRealEstate(results)
-  
+      const finalFilters = { ...appliedFilters, perPage: appliedFilters.perPage || 12, page: newPage };
+
+      const results = await realEstateService.getFilteredRealEstate(finalFilters);
+      setFilteredRealEstate(results.realEstate);
+
       if (typeof window !== "undefined") {
-        localStorage.setItem('realEstateResults', JSON.stringify(results))
+        localStorage.setItem('realEstateResults', JSON.stringify(results));
       }
+
+      const calculatedTotalPages = Math.ceil(results.total / finalFilters.perPage);
+      setTotalPages(calculatedTotalPages > 0 ? calculatedTotalPages : 1);
     } catch (error) {
-      console.error("Erro ao buscar imóveis:", error)
+      console.error("Erro ao buscar imóveis:", error);
+      setFilteredRealEstate([]);
+      setTotalPages(1);
     }
   }
 
   const handleFilter = (newFilters: FilterValues, results?: RealEstateType[]) => {
-    setFilters(newFilters)
+    setFilters(newFilters);
+    setPage(1);
+
     if (results) {
-      setFilteredRealEstate(results)
+      setFilteredRealEstate(results);
+      setTotalPages(Math.ceil(results.length / (newFilters.perPage || 12)));
     } else {
-      fetchRealEstate(newFilters)
+      fetchRealEstate(newFilters, 1);
     }
   };
 
   const clearFilters = () => {
-    setFilters({ perPage: 12 })
-    fetchRealEstate({ perPage: 12 })
+    setPage(1)
+    setFilters({})
+    fetchRealEstate({}, 1);
     localStorage.removeItem('realEstateFilters')
   }
 
@@ -67,8 +88,15 @@ export default function RealEstate() {
               <p className={styles.realEstateNotFound}>Nenhum imóvel encontrado. Altere sua pesquisa!</p>
             )}
           </div>
-
+          <div className="align-self-center">
+            <PaginationComponent
+              currentPage={page}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          </div>
         </Container>
+
       </main>
     </>
   )

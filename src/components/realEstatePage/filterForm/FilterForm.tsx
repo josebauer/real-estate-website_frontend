@@ -71,7 +71,7 @@ export default function FilterForm({ filters: initialFilters, onFilter }: Filter
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     const filteredRealEstate = await realEstateService.getFilteredRealEstate(filters)
-    onFilter(filters, filteredRealEstate)
+    onFilter(filters, filteredRealEstate.realEstate)
 
     setFilters({})
   }
