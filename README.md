@@ -7,9 +7,9 @@
 1. Primeiramente, tenha certeza que já está com o <a href="https://github.com/josebauer/real-estate-website_backend">backend</a> baixado, configurado e rodando na porta 3000.
 
 2. Clone o repositório
-  ```bash
-  git clone git@github.com:josebauer/real-estate-website_frontend.git
-  ```
+   ```bash
+   git clone git@github.com:josebauer/real-estate-website_frontend.git
+   ```
 
 3. Instale as dependências do app:
    ```bash
