@@ -40,6 +40,28 @@ main {
   opacity: 1;
 }
 
+// Component Pagination
+.pagination .page-item .page-link {
+  color:  $medium-blue !important; 
+  border: 1px solid #CCC !important;
+  border-radius: 5px;
+}
+
+.pagination .page-item .page-link span {
+  color: $medium-blue;
+}
+
+.pagination .page-item.disabled .page-link span {
+  color: #CCC;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: $medium-blue !important;
+  color: #FFF !important;
+  border-color: #FFF !important;
+}
+
+// Scroll
 ::-webkit-scrollbar {
   width: 8px;
 }

@@ -29,8 +29,10 @@ export default function RealEstate() {
 
   const handlePageChange = (newPage: number) => {
     if (newPage !== page) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
       setPage(newPage);
       fetchRealEstate(filters, newPage);
+
     }
   }
 

@@ -25,18 +25,15 @@ export default function PaginationComponent({ currentPage, totalPages, onPageCha
   return (
     <Pagination className={styles.pagination}>
       <Pagination.First
-        className={styles.paginationButton}
         onClick={() => onPageChange(1)}
         disabled={currentPage === 1}
       />
       <Pagination.Prev
-        className={styles.paginationButton}
         onClick={() => currentPage > 1 && onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
       />
       {items}
       <Pagination.Next
-        className={styles.paginationButton}
         onClick={() => currentPage < totalPages && onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
       />
