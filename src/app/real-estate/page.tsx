@@ -32,7 +32,6 @@ export default function RealEstate() {
       window.scrollTo({ top: 0, behavior: "smooth" });
       setPage(newPage);
       fetchRealEstate(filters, newPage);
-
     }
   }
 
