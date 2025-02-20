@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">Site para Imobiliárias - Front-end</h1>
 
-## Getting Started
+<p align="center">Neste repositório, possui todo o código da parte Front-end de um site desenvolvido para imobiliárias. Projeto realizado com os conhecimentos adquiridos em aula.</p>
 
-First, run the development server:
+## 🚀 Instalação
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Primeiramente, tenha certeza que já está com o <a href="https://github.com/josebauer/real-estate-website_backend">backend</a> baixado, configurado e rodando na porta 3000.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Clone o repositório
+  ```bash
+  git clone git@github.com:josebauer/real-estate-website_frontend.git
+  ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Instale as dependências do app:
+   ```bash
+   npm install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+4. Crie um arquivo .env na pasta raiz do projeto:
+   ```bash
+   touch .env
+   ```
+   Nele coloque a URL com a porta a ser utilizada pela API:
+   ```bash
+   NEXT_PUBLIC_BASEURL=http://localhost:3000
+   ```
 
-## Learn More
+6. Rode o projeto:
+   ```bash
+   npm run dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+8. Abra [http://localhost:3001](http://localhost:3001) em seu navegador, para acessar a tela do usuário padrão.
+   
+## ⚙️ Funcionalidades
+- Faz conexões com os endpoints da API;
+- Registro e login de usuários;
+- Alteração de dados e senha do usuário;
+- Recuperação de senha;
+- Filtrar imóveis pelas suas características;
+- Adicionar imóveis aos favoritos;
+- Realizar agendamentos de visitas à imóveis.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 💻 Tecnologias Utilizadas
+- JavaScript / TypeScript / TSX
+- Next.js
+- ReactJS
+- SASS
+- React-Bootstrap
+- Bootstrap
+- Axios
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+  
+## ✒️ Autor
+<p>
+  <img align=left margin=10 width=80 src="https://avatars.githubusercontent.com/u/104539756?v=4"/>
+  <p>&nbsp&nbsp&nbspJosé Henrique Bauer<br><br>
+  &nbsp&nbsp&nbsp<a href="https://github.com/josebauer">GitHub</a>&nbsp;|&nbsp;<a href="https://www.linkedin.com/in/jose-henrique-bauer">LinkedIn</a>&nbsp;|&nbsp;<a href="https://josebauer.com.br">Portfólio</a>
+  </p>
