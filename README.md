@@ -7,9 +7,9 @@
 1. Primeiramente, tenha certeza que já está com o <a href="https://github.com/josebauer/real-estate-website_backend">backend</a> baixado, configurado e rodando na porta 3000.
 
 2. Clone o repositório
-  ```bash
-  git clone git@github.com:josebauer/real-estate-website_frontend.git
-  ```
+   ```bash
+   git clone git@github.com:josebauer/real-estate-website_frontend.git
+   ```
 
 3. Instale as dependências do app:
    ```bash
@@ -30,7 +30,7 @@
    npm run dev
    ```
 
-8. Abra [http://localhost:3001](http://localhost:3001) em seu navegador, para acessar a tela do usuário padrão.
+8. Abra [http://localhost:3001](http://localhost:3001) em seu navegador para acessar a UI.
    
 ## ⚙️ Funcionalidades
 - Faz conexões com os endpoints da API;
@@ -43,9 +43,9 @@
 
 
 ## 💻 Tecnologias Utilizadas
-- JavaScript / TypeScript / TSX
 - Next.js
 - ReactJS
+- JavaScript / TypeScript / TSX
 - SASS
 - React-Bootstrap
 - Bootstrap
