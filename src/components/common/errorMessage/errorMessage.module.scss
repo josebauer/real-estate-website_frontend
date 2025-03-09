@@ -1,0 +1,28 @@
+.error404 {
+  font-size: 3rem;
+  color: #000;
+}
+
+.errorDescription {
+  color: #000;
+}
+
+@media screen and (min-width: 768px) {
+  .error404 {
+    font-size: 4rem;
+  }
+
+  .errorDescription {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .error404 {
+    font-size: 6rem;
+  }
+
+  .errorDescription {
+    font-size: 2rem;
+  }
+}

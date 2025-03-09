@@ -3,12 +3,12 @@ import { RealEstateType } from "@/services/realEstateService";
 import styles from "./slideSection.module.scss";
 import Slide from "../common/slide/Slide";
 
-interface props {
+interface Props {
   realEstate: RealEstateType[],
   title: string
 }
 
-export default function SlideSection({ realEstate, title }: props) {
+export default function SlideSection({ realEstate, title }: Props) {
   return (
     <>
       <Container className="d-flex flex-column align-items-center">

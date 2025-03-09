@@ -11,6 +11,7 @@ import { useFavorite } from "@/hooks/useFavorite";
 import { useModal } from "@/hooks/useModal";
 import LoginRegisterModal from "@/components/common/loginRegisterModal/LoginRegisterModal";
 import ScheduleModal from "@/components/common/scheduleModal/ScheduleModal";
+import ErrorMessage from "@/components/common/errorMessage/ErrorMessage";
 
 export default function RealEstate({ params }: { params: { id: string } }) {
   const [scheduleModalOpen, setScheduleModalOpen] = useState(false)
@@ -52,6 +53,10 @@ export default function RealEstate({ params }: { params: { id: string } }) {
     }
 
     await toggleFavorite();
+  }
+
+  if(!realEstate) {
+    return <ErrorMessage message="O imóvel que você tentou acessar não existe." />
   }
 
   const handleShare = async () => {
