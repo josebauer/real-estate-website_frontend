@@ -39,7 +39,8 @@
 - Recuperação de senha;
 - Filtrar imóveis pelas suas características;
 - Adicionar imóveis aos favoritos;
-- Realizar agendamentos de visitas à imóveis.
+- Realizar agendamentos de visitas à imóveis;
+- Compartilhar o link do imóvel.
 
 
 ## 💻 Tecnologias Utilizadas
