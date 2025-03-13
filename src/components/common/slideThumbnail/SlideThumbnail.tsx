@@ -17,11 +17,11 @@ export default function SlideThumbnail({ imagesUrl, title }: ImageThumbnailProps
       const mainSplide = mainCarouselRef.current.splide
       const thumbnailSplide = thumbnailCarouselRef.current.splide
 
-      mainSplide?.on('move', (newIndex) => {
+      mainSplide?.on('move', (newIndex: number) => {
         thumbnailSplide?.go(newIndex)
       })
 
-      thumbnailSplide?.on('move', (newIndex) => {
+      thumbnailSplide?.on('move', (newIndex: number) => {
         mainSplide?.go(newIndex)
       })
     }
