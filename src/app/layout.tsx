@@ -1,5 +1,5 @@
-import "./globals.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./globals.scss";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Header from "../components/common/header/Header";
