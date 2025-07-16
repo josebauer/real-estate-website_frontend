@@ -7,6 +7,7 @@ import ToastComponent from '../toast/Toast';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import ForgotPasswordModal from '../forgotPasswordModal/ForgotPasswordModal';
+import InputMask from 'react-input-mask';
 
 interface LoginRegisterModalProps {
   show: boolean
@@ -165,7 +166,22 @@ export default function LoginRegisterModal({ show, handleClose, initialMode }: L
               <div>
                 <Form.Group className='mb-2'>
                   <Form.Label htmlFor='phone' className={styles.textSmall}>Telefone</Form.Label>
-                  <Form.Control name='phone' id='phone' type="text" className={styles.input} placeholder="Digite seu telefone" required />
+                  <InputMask
+                    mask="(99) 99999-9999"
+                    maskChar=""
+                  >
+                    {(inputProps) => (
+                      <Form.Control
+                        {...inputProps}
+                        name="phone"
+                        id="phone"
+                        type="text"
+                        className={styles.input}
+                        placeholder="Digite seu telefone"
+                        required
+                      />
+                    )}
+                  </InputMask>
                 </Form.Group>
               </div>
             )}

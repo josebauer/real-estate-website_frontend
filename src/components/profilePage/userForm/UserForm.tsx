@@ -4,6 +4,7 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import profileService from "@/services/profileService";
 import ToastComponent from "../../common/toast/Toast";
 import { useRouter } from "next/navigation";
+import InputMask from 'react-input-mask';
 
 export default function UserForm() {
   const router = useRouter()
@@ -97,16 +98,24 @@ export default function UserForm() {
           </Row>
           <Form.Group className='mb-3' >
             <Form.Label htmlFor='phone' className={styles.label}>Telefone</Form.Label>
-            <Form.Control
-              name='phone'
-              id='phone'
-              type="text"
-              className={styles.input}
-              placeholder="(xx) 9xxxx-xxxx"
-              required
+            <InputMask
+              mask="(99) 99999-9999"
+              maskChar=""
               value={phone}
               onChange={(event) => { setPhone(event.target.value) }}
-            />
+            >
+              {(inputProps) => (
+                <Form.Control
+                  {...inputProps}
+                  name="phone"
+                  id="phone"
+                  type="text"
+                  className={styles.input}
+                  placeholder="Digite seu telefone"
+                  required
+                />
+              )}
+            </InputMask>
           </Form.Group>
           <Form.Group className='mb-3'>
             <Form.Label htmlFor='email' className={styles.label}>Email</Form.Label>
